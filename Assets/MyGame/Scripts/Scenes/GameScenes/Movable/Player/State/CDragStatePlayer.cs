@@ -104,8 +104,8 @@ public class CDragStatePlayer : CPlayerStateBase
         SceneManager.MoveGameObjectToScene(predictionBall, m_MyGameManager.scenePrediction);
         predictionBall.transform.position = m_MyPlayerMemoryShare.m_MyRigidbody.gameObject.transform.position;
         predictionBall.transform.rotation = m_MyPlayerMemoryShare.m_MyRigidbody.gameObject.transform.rotation;
-       // predictionBall.transform.localScale = Vector3.one * 3.0f;
-
+        predictionBall.transform.localScale = Vector3.one * m_MyPlayerMemoryShare.m_CurStageData.PredictionBallSize;
+        
         Rigidbody lTempRigidbody = predictionBall.AddComponent<Rigidbody>();
         lTempRigidbody.mass = m_MyPlayerMemoryShare.m_MyRigidbody.mass;
         lTempRigidbody.velocity = m_MyPlayerMemoryShare.m_AddForce;

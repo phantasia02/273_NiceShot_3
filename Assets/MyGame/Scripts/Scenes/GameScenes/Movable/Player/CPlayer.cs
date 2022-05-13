@@ -7,16 +7,6 @@ using UniRx;
 using MYgame.Scripts.Scenes.GameScenes.Data;
 
 
-public class DataPathNode
-{
-    public DataPathNode(Vector3 pos)
-    {
-        m_Postion = pos;
-    }
-
-    public Vector3 m_Postion = Vector3.zero;
-}
-
 /// <summary>
 /// Player Memory Share Data
 /// </summary>
@@ -45,14 +35,13 @@ public class CPlayerMemoryShare : CMemoryShareBase
     public Vector3                              m_HitWaterPoint             = Vector3.zero;
     public Transform                            m_AllObj                    = null;
 
-
-
     public CDataAllSkill                        m_AllSkill                  = new CDataAllSkill();
     public UniRx.Subject<UniRx.Unit>            m_FritPlay                  = new UniRx.Subject<UniRx.Unit>();
 
     public LineRenderer                         m_LinePath                  = null;
     public List<GameObject>                     m_PlayerListRenderObj       = null;
     public List<GameObject>                     m_TargetListRenderObj       = null;
+    public CDataJumpBounce                      m_CurDataJumpBounce         = null;
 };
 
 /// <summary>
@@ -117,10 +106,10 @@ public class CPlayer : CMovableBase
         m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStatePlayer(this));
         m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CReadyPlayStatePlayer(this));
 
-
         m_AllState[(int)StaticGlobalDel.EMovableState.eDrag].AllThisState.Add(new CDragStatePlayer(this));
-        m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpStatePlayer(this));
 
+        m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpStatePlayer(this));
+        m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpNoPhysicsStatePlayer(this));
 
         if (m_MyGameManager.CurStageData.WinMoveWinPos)
             m_AllState[(int)StaticGlobalDel.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));
@@ -132,10 +121,12 @@ public class CPlayer : CMovableBase
 
     protected override void CreateMemoryShare()
     {
-        m_MyPlayerMemoryShare = new CPlayerMemoryShare();
-        m_MyMemoryShare = m_MyPlayerMemoryShare;
+        if (m_MyMemoryShare == null)
+            m_MyMemoryShare = m_MyPlayerMemoryShare = new CPlayerMemoryShare();
 
-        m_MyPlayerMemoryShare.m_MyPlayer = this;
+        if (m_MyMemoryShare.m_MyMovable == null)
+            m_MyMemoryShare.m_MyMovable = m_MyPlayerMemoryShare.m_MyPlayer = this;
+
         m_MyPlayerMemoryShare.m_CurStageData        = m_MyGameManager.CurStageData;
         m_MyPlayerMemoryShare.m_LinePath            = this.GetComponentInChildren<LineRenderer>();
         m_MyPlayerMemoryShare.m_AllObj              = this.transform.Find("AllObj");

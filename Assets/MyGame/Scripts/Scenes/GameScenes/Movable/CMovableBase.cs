@@ -178,7 +178,9 @@ public abstract class CMovableBase : CGameObjBas
 
     protected virtual void CreateMemoryShare()
     {
-        //m_MyMemoryShare = new CMemoryShareBase();
+        if (m_MyMemoryShare == null)
+            m_MyMemoryShare = new CMemoryShareBase();
+
         SetBaseMemoryShare();
     }
 
@@ -189,8 +191,10 @@ public abstract class CMovableBase : CGameObjBas
 
     protected void SetBaseMemoryShare()
     {
+        if (m_MyMemoryShare.m_MyMovable == null)
+            m_MyMemoryShare.m_MyMovable             = this;
+
         m_MyMemoryShare.m_MyTransform           = this.transform;
-        m_MyMemoryShare.m_MyMovable             = this;
 
         m_MyMemoryShare.m_MyRigidbody           = this.GetComponent<Rigidbody>();
         m_MyMemoryShare.m_MyAllCollider         = m_MyAllCollider;

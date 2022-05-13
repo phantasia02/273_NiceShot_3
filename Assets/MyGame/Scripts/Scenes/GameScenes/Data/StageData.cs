@@ -17,11 +17,15 @@ namespace MYgame.Scripts.Scenes.GameScenes.Data
 
         [SerializeField]
         private float _PredictionTime = 2.0f;
-        
+
+        [SerializeField]
+        private float _PredictionBallSize = 1.0f;
+
 
         public bool WinMoveWinPos => _WinMoveWinPos;
         public Vector3 AddForce => _AddForce;
         public float PredictionTime => _PredictionTime;
+        public float PredictionBallSize => _PredictionBallSize;
 
     }
 }

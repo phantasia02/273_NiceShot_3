@@ -88,10 +88,17 @@ public class CJumpStatePlayer : CPlayerStateBase
 
     public override void OnTriggerEnter(Collider other)
     {
-        if (other.tag != StaticGlobalDel.TagWin)
-            return;
-
-        ChangState(EMovableState.eWin);
+        if (other.tag == StaticGlobalDel.TagWin)
+            ChangState(EMovableState.eWin);
+        else if (other.tag == StaticGlobalDel.TagJumpBounce)
+        {
+            CDataJumpBounce lTempDataJumpBounce = other.gameObject.GetComponent<CDataJumpBounce>();
+            if (lTempDataJumpBounce != null)
+            {
+                m_MyPlayerMemoryShare.m_CurDataJumpBounce = lTempDataJumpBounce;
+                m_MyMovable.SetChangState(EMovableState.eJump, 1);
+            }
+        }
     }
 
     public override void OnTriggerStay(Collider other)
