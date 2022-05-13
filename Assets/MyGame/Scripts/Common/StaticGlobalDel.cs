@@ -67,7 +67,7 @@ public static class StaticGlobalDel
     public const string TagReadyGameWindow  = "ReadyGameWindow";
     public const string TagWin              = "WinTag";
     public const string TagPlayTouchObject  = "PlayTouchObject";
-
+    public const string TagJumpBounce       = "Bounce";
 
 
     public const int g_WaterMask                    = 1 << (int)ELayerIndex.eWater;
