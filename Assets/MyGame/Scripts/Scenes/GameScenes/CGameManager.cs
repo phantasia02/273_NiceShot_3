@@ -141,9 +141,11 @@ public class CGameManager : MonoBehaviour
         _scenePrediction = SceneManager.CreateScene("ScenePredictPhysics", sceneParam);
         _scenePredictionPhysics = scenePrediction.GetPhysicsScene();
 
-        GameObject lTempBG = GameObject.Instantiate(m_BG);
-        SceneManager.MoveGameObjectToScene(lTempBG, scenePrediction);
-
+        if (m_BG != null)
+        {
+            GameObject lTempBG = GameObject.Instantiate(m_BG);
+            SceneManager.MoveGameObjectToScene(lTempBG, scenePrediction);
+        }
         //m_EndCinemachineTargetGroup = this.GetComponentInChildren<CinemachineTargetGroup>();
         //for (int i = 0; i < m_AllGameObjBas.Length; i++)
         //    m_AllGameObjBas[i] = new CGameObjBasListData();
