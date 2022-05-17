@@ -572,7 +572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 136818039}
   m_Layer: 0
-  m_Name: ----------- CGameManager ----------- (1)
+  m_Name: ----------- CGameManager -----------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1895,6 +1895,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 344031205}
     m_Modifications:
+    - target: {fileID: 100000, guid: a8dbf18b1f1329a48ad041a18a1d7373, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: a8dbf18b1f1329a48ad041a18a1d7373, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -8474,7 +8478,7 @@ MonoBehaviour:
   m_PlayerListRenderObj:
   - {fileID: 949938339}
   m_TargetListRenderObj:
-  - {fileID: 65929741}
+  - {fileID: 642772587}
 --- !u!4 &4089556699465822498
 Transform:
   m_ObjectHideFlags: 0

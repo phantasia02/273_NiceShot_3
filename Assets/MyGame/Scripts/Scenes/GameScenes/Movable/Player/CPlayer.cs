@@ -320,10 +320,5 @@ public class CPlayer : CMovableBase
         return m_PlayEndEvent ?? (m_PlayEndEvent = new UniRx.Subject<UniRx.Unit>());
     }
 
-    public UniRx.Subject<UniRx.Unit> ObserverFritPlay()
-    {
-        return m_MyPlayerMemoryShare.m_FritPlay ?? (m_MyPlayerMemoryShare.m_FritPlay = new UniRx.Subject<UniRx.Unit>());
-    }
-
     // ===================== UniRx ======================
 }

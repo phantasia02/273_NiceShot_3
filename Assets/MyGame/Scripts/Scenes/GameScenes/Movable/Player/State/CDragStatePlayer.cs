@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UniRx;
 
 public class CDragStatePlayer : CPlayerStateBase
 {
@@ -9,6 +10,8 @@ public class CDragStatePlayer : CPlayerStateBase
     Vector3 m_BuffForceNormal = Vector3.zero;
     Vector3 m_BuffCameraForward = Vector3.zero;
     Vector3 m_BuffCameraRight = Vector3.zero;
+
+    CDataJumpBounce m_BuffDataJumpBounce = null;
 
     public CDragStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -46,7 +49,8 @@ public class CDragStatePlayer : CPlayerStateBase
 
     public override void MouseDrag()
     {
-        Vector3 lTempEndPos = Vector3.zero;
+        m_BuffDataJumpBounce = null;
+        //Vector3 lTempEndPos = Vector3.zero;
         Vector3 lTempV3 = m_MyPlayerMemoryShare.m_CurMouseDownPos - m_MyPlayerMemoryShare.m_DownMouseDownPos;
         //Debug.Log($"======================================");
         //Debug.Log($"lTempV3 = {lTempV3}");
@@ -101,6 +105,14 @@ public class CDragStatePlayer : CPlayerStateBase
         // m_MyGameManager.ShowPath(m_MyPlayerMemoryShare.m_AddForce, m_MyPlayerMemoryShare.m_MyRigidbody);
 
         GameObject predictionBall = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        CVirtualBall lTempVirtualBall = predictionBall.AddComponent<CVirtualBall>();
+
+        lTempVirtualBall.ObserverCallBackDataJumpBounceEvent().
+            Subscribe(v => {
+                m_BuffDataJumpBounce = v;
+            }).AddTo(lTempVirtualBall);
+
+
         SceneManager.MoveGameObjectToScene(predictionBall, m_MyGameManager.scenePrediction);
         predictionBall.transform.position = m_MyPlayerMemoryShare.m_MyRigidbody.gameObject.transform.position;
         predictionBall.transform.rotation = m_MyPlayerMemoryShare.m_MyRigidbody.gameObject.transform.rotation;
@@ -118,16 +130,42 @@ public class CDragStatePlayer : CPlayerStateBase
         const float SimulateTime = 2.0f;
         //const float CmaxTime = 2.5f;
         float lTempCutTime = 0.0f;
-
+        
         //  Debug.Log($"==============================================");
         while (lTempCutTime < m_MyPlayerMemoryShare.m_CurStageData.PredictionTime)
         {
             m_MyGameManager.scenePredictionPhysics.Simulate(Time.fixedDeltaTime * SimulateTime);
+            if (m_BuffDataJumpBounce != null)
+                break;
+
             lTempCutTime += Time.fixedDeltaTime * SimulateTime;
 
             //  Debug.Log($"predictionBall.transform.position = {predictionBall.transform.position}");
             lTempAllPathPoint.Add(predictionBall.transform.position);
+        }
 
+        for (int x = 0; x < 10; x++)
+        {
+            if (m_BuffDataJumpBounce != null)
+            {
+                Vector3 lTempStartPos = predictionBall.transform.position;
+                Vector3 lTempEndPos = m_BuffDataJumpBounce.NextBounceTransform.position;
+                Vector3 CentralHighPos = ((lTempStartPos + lTempEndPos) * 0.5f) + (Vector3.up * m_BuffDataJumpBounce.JumpHigh);
+                const int MaxCount = 20; 
+                for (int i = 1; i < MaxCount; i++)
+                {
+                    var t = i / (float)MaxCount;
+                    Vector3 lTempAddPathPointV3 = StaticGlobalDel.GetBezierPoint(t,
+                        lTempStartPos, CentralHighPos, lTempEndPos);
+
+                    lTempAllPathPoint.Add(lTempAddPathPointV3);
+                }
+
+                predictionBall.transform.position = lTempEndPos;
+                m_BuffDataJumpBounce = m_BuffDataJumpBounce.NextBounceTransform.GetComponent<CDataJumpBounce>();
+            }
+            else
+                break;
         }
 
         m_MyPlayerMemoryShare.m_LinePath.positionCount = lTempAllPathPoint.Count;
@@ -148,5 +186,10 @@ public class CDragStatePlayer : CPlayerStateBase
         }
         else
             ChangState(EMovableState.eJump);
+    }
+
+    public void aaaqqq(CDataJumpBounce vvv)
+    {
+
     }
 }
