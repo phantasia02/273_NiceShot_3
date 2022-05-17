@@ -88,7 +88,6 @@ public class CJumpStatePlayer : CPlayerStateBase
 
     public override void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"other.tag  = {other.tag} ");
 
         if (other.tag == StaticGlobalDel.TagWin)
             ChangState(EMovableState.eWin);
