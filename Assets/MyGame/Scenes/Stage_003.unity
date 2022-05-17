@@ -2031,7 +2031,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 642772587}
-  m_Material: {fileID: 13400000, guid: 37b8a34cbf6919e419f4ba8f47b438f5, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -2094,7 +2094,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 642772587}
-  m_LocalRotation: {x: -0.2863076, y: -0.18381885, z: -0.05606754, w: 0.93866664}
+  m_LocalRotation: {x: -0.29131886, y: -0.05172617, z: -0.015777268, w: 0.9550962}
   m_LocalPosition: {x: -2.04, y: 0.55, z: 3.5}
   m_LocalScale: {x: 1, y: 0.099999994, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2102,7 +2102,7 @@ Transform:
   - {fileID: 736536354}
   m_Father: {fileID: 73062159}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -33.925, y: -22.16, z: 0}
+  m_LocalEulerAnglesHint: {x: -33.925, y: -6.2, z: 0}
 --- !u!1 &662871944
 GameObject:
   m_ObjectHideFlags: 0
@@ -2409,6 +2409,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NextBounceTransform: {fileID: 2108565814}
   m_PlayTime: 1
+  m_JumpHigh: 1
 --- !u!1 &798416993
 GameObject:
   m_ObjectHideFlags: 0
@@ -4324,7 +4325,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1161361521}
-  m_Material: {fileID: 13400000, guid: 37b8a34cbf6919e419f4ba8f47b438f5, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -5592,7 +5593,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517395563}
-  m_Material: {fileID: 13400000, guid: 37b8a34cbf6919e419f4ba8f47b438f5, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -5760,6 +5761,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NextBounceTransform: {fileID: 2035353664}
   m_PlayTime: 1
+  m_JumpHigh: 2
 --- !u!1 &1590479931
 GameObject:
   m_ObjectHideFlags: 0
@@ -6899,6 +6901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NextBounceTransform: {fileID: 1573170222}
   m_PlayTime: 1
+  m_JumpHigh: 1
 --- !u!1 &1767136459
 GameObject:
   m_ObjectHideFlags: 0
@@ -7942,7 +7945,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050312876}
-  m_Material: {fileID: 13400000, guid: 37b8a34cbf6919e419f4ba8f47b438f5, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -8340,6 +8343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NextBounceTransform: {fileID: 1754606324}
   m_PlayTime: 1
+  m_JumpHigh: 1
 --- !u!1001 &2134199923
 PrefabInstance:
   m_ObjectHideFlags: 0

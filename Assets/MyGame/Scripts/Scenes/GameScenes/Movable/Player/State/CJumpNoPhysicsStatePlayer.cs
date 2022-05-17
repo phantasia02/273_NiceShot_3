@@ -38,8 +38,9 @@ public class CJumpNoPhysicsStatePlayer : CJumpStatePlayer
 
         Vector3 StartePos = m_MyPlayerMemoryShare.m_MyTransform.position;
         Vector3 EndPos = m_MyPlayerMemoryShare.m_CurDataJumpBounce.NextBounceTransform.position;
-        Vector3 CentralHighPos = ((StartePos + EndPos) * 0.5f) + (Vector3.up * 1.0f);
+        Vector3 CentralHighPos = ((StartePos + EndPos) * 0.5f) + (Vector3.up * m_MyPlayerMemoryShare.m_CurDataJumpBounce.JumpHigh);
 
+        
         m_BezierPath.Clear();
         const int CPathMaxCount = 20;
         for (int i = 0; i < CPathMaxCount; i++)
