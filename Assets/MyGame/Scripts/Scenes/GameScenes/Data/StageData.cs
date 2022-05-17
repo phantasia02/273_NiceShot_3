@@ -30,14 +30,16 @@ namespace MYgame.Scripts.Scenes.GameScenes.Data
 
         [SerializeField]
         private EJumpStatePlayerType _JumpStatePlayerType =  EJumpStatePlayerType.eNormal;
-        
 
+        [SerializeField]
+        private float _RotationAngle = 0.0f;
 
         public bool WinMoveWinPos => _WinMoveWinPos;
         public Vector3 AddForce => _AddForce;
         public float PredictionTime => _PredictionTime;
         public float PredictionBallSize => _PredictionBallSize;
         public EJumpStatePlayerType JumpStatePlayerType => _JumpStatePlayerType;
+        public float RotationAngle => _RotationAngle;
 
     }
 }

@@ -12,6 +12,7 @@ public class CDragStatePlayer : CPlayerStateBase
     Vector3 m_BuffCameraRight = Vector3.zero;
 
     CDataJumpBounce m_BuffDataJumpBounce = null;
+    GameObject m_WinObj = null;
 
     public CDragStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -49,6 +50,7 @@ public class CDragStatePlayer : CPlayerStateBase
 
     public override void MouseDrag()
     {
+        m_WinObj = null;
         m_BuffDataJumpBounce = null;
         //Vector3 lTempEndPos = Vector3.zero;
         Vector3 lTempV3 = m_MyPlayerMemoryShare.m_CurMouseDownPos - m_MyPlayerMemoryShare.m_DownMouseDownPos;
@@ -109,7 +111,21 @@ public class CDragStatePlayer : CPlayerStateBase
 
         lTempVirtualBall.ObserverCallBackDataJumpBounceEvent().
             Subscribe(v => {
-                m_BuffDataJumpBounce = v;
+
+                if (v.tag == StaticGlobalDel.TagWin)
+                {
+                    m_WinObj = v;
+                    return;
+                }
+                else if (v.tag == StaticGlobalDel.TagJumpBounce)
+                {
+                    CDataJumpBounce lTempDataJumpBounce = v.GetComponent<CDataJumpBounce>();
+                    if (lTempDataJumpBounce == null)
+                        return;
+
+                    m_BuffDataJumpBounce = lTempDataJumpBounce;
+                }
+
             }).AddTo(lTempVirtualBall);
 
 
@@ -121,13 +137,14 @@ public class CDragStatePlayer : CPlayerStateBase
         Rigidbody lTempRigidbody = predictionBall.AddComponent<Rigidbody>();
         lTempRigidbody.mass = m_MyPlayerMemoryShare.m_MyRigidbody.mass;
         lTempRigidbody.velocity = m_MyPlayerMemoryShare.m_AddForce;
+        lTempRigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
 
         //m_MyPlayerMemoryShare.m_LinePath.positionCount = m_MyPlayerMemoryShare.m_BezierPath.Length;
         //m_MyPlayerMemoryShare.m_LinePath.SetPositions(m_MyPlayerMemoryShare.m_BezierPath);
         m_MyPlayerMemoryShare.m_LinePath.positionCount = 0;
 
         List<Vector3> lTempAllPathPoint = new List<Vector3>();
-        const float SimulateTime = 2.0f;
+        const float SimulateTime = 4.0f;
         //const float CmaxTime = 2.5f;
         float lTempCutTime = 0.0f;
         
@@ -138,8 +155,13 @@ public class CDragStatePlayer : CPlayerStateBase
             if (m_BuffDataJumpBounce != null)
                 break;
 
-            lTempCutTime += Time.fixedDeltaTime * SimulateTime;
+            if (m_WinObj != null)
+            {
+                lTempAllPathPoint.Add(m_WinObj.transform.position);
+                break;
+            }
 
+            lTempCutTime += Time.fixedDeltaTime * SimulateTime;
             //  Debug.Log($"predictionBall.transform.position = {predictionBall.transform.position}");
             lTempAllPathPoint.Add(predictionBall.transform.position);
         }

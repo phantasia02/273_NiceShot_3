@@ -10,7 +10,7 @@ public class CJumpStatePlayer : CPlayerStateBase
     protected Vector3 m_RotateLocalAxis = Vector3.zero;
     protected float m_Dis = 1.0f;
     protected bool m_RotationLoop = true;
-    
+    protected float m_OverTime = 3.0f;
 
     public CJumpStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -58,12 +58,12 @@ public class CJumpStatePlayer : CPlayerStateBase
     {
         base.updataState();
 
-        if (m_RotationLoop)
-            m_MyPlayerMemoryShare.m_MyRigidbody.rotation = Quaternion.AngleAxis(Time.deltaTime * m_Dis * -20.0f, m_RotateLocalAxis) * m_MyPlayerMemoryShare.m_MyRigidbody.rotation;
+        if (m_RotationLoop && Mathf.Epsilon < Mathf.Abs(m_MyPlayerMemoryShare.m_CurStageData.RotationAngle))
+            m_MyPlayerMemoryShare.m_MyRigidbody.rotation = Quaternion.AngleAxis(Time.deltaTime * m_Dis * m_MyPlayerMemoryShare.m_CurStageData.RotationAngle, m_RotateLocalAxis) * m_MyPlayerMemoryShare.m_MyRigidbody.rotation;
 
         //m_MyPlayerMemoryShare.m_AllObj.RotateAroundLocal(m_RotateLocalAxis, Time.deltaTime * m_Dis * 0.5f);
         // m_MyPlayerMemoryShare.m_MyTransform.rotation = Quaternion.AngleAxis(Time.deltaTime * m_Dis * 20.0f, m_RotateLocalAxis) * m_MyPlayerMemoryShare.m_AllObj.rotation;
-        if (m_StateTime >= 5.0f)
+        if (m_StateTime >= m_OverTime)
             ChangState(EMovableState.eDeath);
     }
 
@@ -81,6 +81,8 @@ public class CJumpStatePlayer : CPlayerStateBase
 
             ChangState(EMovableState.eDeath);
         }
+        else
+            m_OverTime += 2.0f;
 
         if (m_StateTime > 0.1f)
             m_RotationLoop = false;
