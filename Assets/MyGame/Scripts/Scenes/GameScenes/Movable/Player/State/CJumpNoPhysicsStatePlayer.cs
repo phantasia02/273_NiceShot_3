@@ -8,7 +8,7 @@ public class CJumpNoPhysicsStatePlayer : CJumpStatePlayer
     public override EMovableState StateType() { return EMovableState.eJump; }
     
     protected List<Vector3> m_BezierPath = new List<Vector3>();
-    //protected
+    protected int m_BuffDoTweenID = 0;
 
     public CJumpNoPhysicsStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -18,6 +18,7 @@ public class CJumpNoPhysicsStatePlayer : CJumpStatePlayer
 
     protected override void InState()
     {
+        m_BuffDoTweenID = StaticGlobalDel.GetDoTweenID();
         SetPathMove();
     }
 
@@ -33,7 +34,7 @@ public class CJumpNoPhysicsStatePlayer : CJumpStatePlayer
 
     public void SetPathMove()
     {
-        DOTween.Kill(1000);
+        DOTween.Kill(m_BuffDoTweenID);
 
         Vector3 StartePos = m_MyPlayerMemoryShare.m_MyTransform.position;
         Vector3 EndPos = m_MyPlayerMemoryShare.m_CurDataJumpBounce.NextBounceTransform.position;
@@ -49,7 +50,7 @@ public class CJumpNoPhysicsStatePlayer : CJumpStatePlayer
         m_BezierPath[m_BezierPath.Count - 1] = EndPos;
 
         Vector3[] lTempArrVector3 = m_BezierPath.ToArray();
-        m_MyPlayerMemoryShare.m_MyTransform.DOPath(lTempArrVector3, 0.8f).SetEase(Ease.Linear).SetId(1000);
+        m_MyPlayerMemoryShare.m_MyTransform.DOPath(lTempArrVector3, 0.8f).SetEase(Ease.Linear).SetId(m_BuffDoTweenID);
     }
 
     public override void OnTriggerEnter(Collider other)

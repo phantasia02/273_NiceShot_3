@@ -12,6 +12,7 @@ TagManager:
   - PlayTouchObject
   - WinTag
   - Bounce
+  - Insert
   layers:
   - Default
   - TransparentFX

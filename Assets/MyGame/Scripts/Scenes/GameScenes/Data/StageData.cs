@@ -4,6 +4,13 @@ using System.Collections.Generic;
 
 namespace MYgame.Scripts.Scenes.GameScenes.Data
 {
+
+    public enum EJumpStatePlayerType
+    {
+        eNormal = 0,
+        eInsert = 1,
+    }
+
     [CreateAssetMenu(
         menuName = "Data/Stage Data",
         fileName = "StageData")]
@@ -21,11 +28,16 @@ namespace MYgame.Scripts.Scenes.GameScenes.Data
         [SerializeField]
         private float _PredictionBallSize = 1.0f;
 
+        [SerializeField]
+        private EJumpStatePlayerType _JumpStatePlayerType =  EJumpStatePlayerType.eNormal;
+        
+
 
         public bool WinMoveWinPos => _WinMoveWinPos;
         public Vector3 AddForce => _AddForce;
         public float PredictionTime => _PredictionTime;
         public float PredictionBallSize => _PredictionBallSize;
+        public EJumpStatePlayerType JumpStatePlayerType => _JumpStatePlayerType;
 
     }
 }

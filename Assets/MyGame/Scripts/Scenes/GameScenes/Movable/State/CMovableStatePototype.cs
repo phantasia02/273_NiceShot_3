@@ -115,6 +115,15 @@ public abstract class CMovableStatePototype : CExternalOBJBase
     public virtual void MouseDrag(){}
     public virtual void MouseUp(){}
 
+    public void UseGravityRigidbody(bool useGravity)
+    {
+        if (m_MyMemoryShare.m_MyRigidbody == null)
+            return;
+        
+        m_MyMemoryShare.m_MyRigidbody.useGravity = useGravity;
+        m_MyMemoryShare.m_MyRigidbody.isKinematic = !useGravity;
+    }
+
     public bool FloatingToFloorChack()
     {
         return false;

@@ -108,8 +108,14 @@ public class CPlayer : CMovableBase
 
         m_AllState[(int)StaticGlobalDel.EMovableState.eDrag].AllThisState.Add(new CDragStatePlayer(this));
 
-        m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpStatePlayer(this));
-        m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpNoPhysicsStatePlayer(this));
+
+        if (m_MyGameManager.CurStageData.JumpStatePlayerType == EJumpStatePlayerType.eNormal)
+        {
+            m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpStatePlayer(this));
+            m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpNoPhysicsStatePlayer(this));
+        }
+        else if (m_MyGameManager.CurStageData.JumpStatePlayerType == EJumpStatePlayerType.eInsert)
+            m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpInsertStatePlayer(this));
 
         if (m_MyGameManager.CurStageData.WinMoveWinPos)
             m_AllState[(int)StaticGlobalDel.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));

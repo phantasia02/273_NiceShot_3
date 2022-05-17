@@ -28,8 +28,8 @@ public class CJumpStatePlayer : CPlayerStateBase
         m_RotateLocalAxis.Normalize();
 
         //m_MyPlayerMemoryShare.m_MyRigidbody.maxAngularVelocity = 7.0f;
-        m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = true;
-        m_MyPlayerMemoryShare.m_MyRigidbody.isKinematic = false;
+
+        UseGravityRigidbody(true);
         m_MyPlayerMemoryShare.m_MyRigidbody.velocity = m_MyPlayerMemoryShare.m_AddForce;
         //m_MyPlayerMemoryShare.m_MyRigidbody.angularVelocity = m_MyPlayerMemoryShare.m_AddForce;
         //m_MyPlayerMemoryShare.m_MyRigidbody.inertiaTensorRotation = Quaternion.AngleAxis(m_Dis * 2000.0f, m_RotateLocalAxis) * m_MyPlayerMemoryShare.m_AllObj.rotation;
@@ -88,6 +88,8 @@ public class CJumpStatePlayer : CPlayerStateBase
 
     public override void OnTriggerEnter(Collider other)
     {
+        Debug.Log($"other.tag  = {other.tag} ");
+
         if (other.tag == StaticGlobalDel.TagWin)
             ChangState(EMovableState.eWin);
         else if (other.tag == StaticGlobalDel.TagJumpBounce)
