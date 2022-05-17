@@ -1084,10 +1084,10 @@ MonoBehaviour:
       m_RotationOrder: 0
     m_TargetTransform: {fileID: 0}
     m_ControlTransform: {fileID: 0}
-    m_TargetV3: {x: 0, y: 0, z: 30}
+    m_TargetV3: {x: 0, y: 0, z: 15}
     m_TargetColor: {r: 0, g: 0, b: 0, a: 0}
     m_TargetAlpha: 0
-    m_Duration: 1
+    m_Duration: 3
     m_StartTime: 0
     m_LoopCount: -1
     m_UnityEvent:
@@ -1662,7 +1662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4411128782263238, guid: 426b44a7575f71e479fab4f4e8431989, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2
+      value: 0.392
       objectReference: {fileID: 0}
     - target: {fileID: 4411128782263238, guid: 426b44a7575f71e479fab4f4e8431989, type: 3}
       propertyPath: m_LocalRotation.w

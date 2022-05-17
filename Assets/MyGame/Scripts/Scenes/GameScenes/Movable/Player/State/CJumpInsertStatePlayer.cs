@@ -22,7 +22,7 @@ public class CJumpInsertStatePlayer : CPlayerStateBase
     {
         m_BuffDoTweenID = StaticGlobalDel.GetDoTweenID();
         
-        m_RotateLocalAxis = Vector3.Cross(-m_MyGameManager.StartPosition.forward, Vector3.up);
+        m_RotateLocalAxis = Vector3.Cross(-m_MyPlayerMemoryShare.m_MyTransform.forward, Vector3.up);
         m_RotateLocalAxis.Normalize();
 
         m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = true;
@@ -41,18 +41,24 @@ public class CJumpInsertStatePlayer : CPlayerStateBase
 
         if (!m_HasHit)
         {
-            m_HasHit = Physics.Raycast(m_MyPlayerMemoryShare.m_MyTransform.position, m_MyPlayerMemoryShare.m_MyTransform.forward, out m_RaycastHitInfo, 0.5f);
-            m_MyPlayerMemoryShare.m_MyRigidbody.rotation = Quaternion.AngleAxis(Time.fixedDeltaTime * -270.0f, m_RotateLocalAxis) * m_MyPlayerMemoryShare.m_MyRigidbody.rotation;
+            m_HasHit = Physics.Raycast(m_MyPlayerMemoryShare.m_MyTransform.position, m_MyPlayerMemoryShare.m_MyTransform.forward, out m_RaycastHitInfo, 0.4f);
+            m_MyPlayerMemoryShare.m_MyRigidbody.rotation = Quaternion.AngleAxis(Time.fixedDeltaTime * -210.0f, m_RotateLocalAxis) * m_MyPlayerMemoryShare.m_MyRigidbody.rotation;
 
             if (m_HasHit)
+            {
                 UseGravityRigidbody(false);
+                m_MyPlayerMemoryShare.m_MyTransform.parent = m_RaycastHitInfo.transform;
+
+                if (m_RaycastHitInfo.collider.gameObject.tag == StaticGlobalDel.TagWin)
+                    ChangState(EMovableState.eWin);
+            }
         }
     }
 
-    public void RaycastTest()
-    {
-        m_HasHit = Physics.Raycast(m_MyPlayerMemoryShare.m_MyTransform.position, m_MyPlayerMemoryShare.m_MyTransform.forward, out m_RaycastHitInfo, 0.3f);
-    }
+    //public void RaycastTest()
+    //{
+    //    m_HasHit = Physics.Raycast(m_MyPlayerMemoryShare.m_MyTransform.position, m_MyPlayerMemoryShare.m_MyTransform.forward, out m_RaycastHitInfo, 0.3f);
+    //}
 
     protected override void OutState()
     {
@@ -61,7 +67,6 @@ public class CJumpInsertStatePlayer : CPlayerStateBase
 
     public override void OnTriggerEnter(Collider other)
     {
-        DOTween.Kill(m_BuffDoTweenID);
     }
 
     public override void OnTriggerStay(Collider other)

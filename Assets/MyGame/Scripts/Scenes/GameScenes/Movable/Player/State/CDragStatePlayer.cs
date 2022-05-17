@@ -175,6 +175,8 @@ public class CDragStatePlayer : CPlayerStateBase
 
         if (m_MyPlayerMemoryShare.m_MyPlayer.UpdateObjDir != null)
             m_MyPlayerMemoryShare.m_MyPlayer.UpdateObjDir.forward = -m_BuffForceNormal;
+        else
+            m_MyPlayerMemoryShare.m_MyPlayer.transform.forward = -m_BuffForceNormal;
     }
 
     public override void MouseUp()
