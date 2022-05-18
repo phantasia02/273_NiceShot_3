@@ -47,7 +47,7 @@ public class CJumpInsertStatePlayer : CPlayerStateBase
             if (m_HasHit)
             {
                 UseGravityRigidbody(false);
-                m_MyPlayerMemoryShare.m_MyTransform.parent = m_RaycastHitInfo.transform;
+                m_MyPlayerMemoryShare.m_MyTransform.parent = m_RaycastHitInfo.transform.parent.parent;
 
                 if (m_RaycastHitInfo.collider.gameObject.tag == StaticGlobalDel.TagWin)
                     ChangState(EMovableState.eWin);
