@@ -195,6 +195,7 @@ public class CDragStatePlayer : CPlayerStateBase
 
         m_MyPlayerMemoryShare.m_LinePath.positionCount = lTempAllPathPoint.Count;
         m_MyPlayerMemoryShare.m_LinePath.SetPositions(lTempAllPathPoint.ToArray());
+        m_MyPlayerMemoryShare.m_EndPos = lTempAllPathPoint[lTempAllPathPoint.Count - 1];
 
         GameObject.Destroy(predictionBall);
 

@@ -30,17 +30,24 @@ public class CJumpInsertStatePlayer : CPlayerStateBase
 
         m_HasHit = false;
 
-        m_MyPlayerMemoryShare.m_MyRigidbody.DORotate(new Vector3(-180.0f, 0.0f, 0.0f), 0.7f, RotateMode.LocalAxisAdd);
+        Vector3 lTempStartToEndDir = m_MyPlayerMemoryShare.m_EndPos - m_MyPlayerMemoryShare.m_StartePos.position;
+        lTempStartToEndDir.Normalize();
+
+        float lTempAngle = 360.0f - Vector3.SignedAngle(m_MyPlayerMemoryShare.m_MyTransform.forward, lTempStartToEndDir, m_MyPlayerMemoryShare.m_MyTransform.right) + Random.Range(5.0f, 10.0f);
+
+        m_MyPlayerMemoryShare.m_MyRigidbody.DORotate(new Vector3(-lTempAngle, 0.0f, 0.0f), 0.7f, RotateMode.LocalAxisAdd);
     }
 
     protected override void FixedupdataState()
     {
         if (!m_HasHit)
         {
-            m_HasHit = Physics.Raycast(m_MyPlayerMemoryShare.m_MyTransform.position, m_MyPlayerMemoryShare.m_MyTransform.forward, out m_RaycastHitInfo, 0.4f);
+            m_HasHit = Physics.Raycast(new Ray(m_MyPlayerMemoryShare.m_MyTransform.position, m_MyPlayerMemoryShare.m_MyTransform.forward), out m_RaycastHitInfo, 0.4f, ~StaticGlobalDel.g_PlayerMask);
 
             if (m_HasHit)
             {
+                Debug.Log(m_RaycastHitInfo.collider.name);
+
                 UseGravityRigidbody(false);
                 m_MyPlayerMemoryShare.m_MyTransform.parent = m_RaycastHitInfo.transform.parent.parent;
 

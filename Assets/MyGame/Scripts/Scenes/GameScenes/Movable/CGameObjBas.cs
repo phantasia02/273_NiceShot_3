@@ -16,6 +16,7 @@ public abstract class CGameObjBas : MonoBehaviour
         eBrickObj           = 1,
         eOriginBuilding     = 2,
         ePlayer             = 3,
+        eNpc                = 4,
         eMax
     }
 

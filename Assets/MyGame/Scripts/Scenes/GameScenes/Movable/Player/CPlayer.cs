@@ -7,6 +7,16 @@ using UniRx;
 using MYgame.Scripts.Scenes.GameScenes.Data;
 
 
+//interface IProduct
+//{
+//    int aaa;
+//    string model { get; set; }//宣告 model這個屬性需有 get 與 set 兩個方法
+//    decimal price { get; set; }
+
+//    decimal Tax();
+//}
+
+
 /// <summary>
 /// Player Memory Share Data
 /// </summary>
