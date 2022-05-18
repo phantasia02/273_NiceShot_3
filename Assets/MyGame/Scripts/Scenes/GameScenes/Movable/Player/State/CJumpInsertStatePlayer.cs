@@ -11,7 +11,7 @@ public class CJumpInsertStatePlayer : CPlayerStateBase
     protected int m_BuffDoTweenID = 0;
     protected bool m_HasHit = false;
     protected RaycastHit m_RaycastHitInfo;
-    protected Vector3 m_RotateLocalAxis = Vector3.zero;
+    protected bool m_RotationLoop = true;
 
     public CJumpInsertStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -22,8 +22,7 @@ public class CJumpInsertStatePlayer : CPlayerStateBase
     {
         m_BuffDoTweenID = StaticGlobalDel.GetDoTweenID();
         
-        m_RotateLocalAxis = Vector3.Cross(-m_MyPlayerMemoryShare.m_MyTransform.forward, Vector3.up);
-        m_RotateLocalAxis.Normalize();
+
 
         m_MyPlayerMemoryShare.m_MyRigidbody.useGravity = true;
         m_MyPlayerMemoryShare.m_MyRigidbody.isKinematic = false;
@@ -31,23 +30,25 @@ public class CJumpInsertStatePlayer : CPlayerStateBase
 
         m_HasHit = false;
 
-
+        m_MyPlayerMemoryShare.m_MyRigidbody.DORotate(new Vector3(-180.0f, 0.0f, 0.0f), 0.7f, RotateMode.LocalAxisAdd);
     }
 
     protected override void FixedupdataState()
     {
-
-      
-
         if (!m_HasHit)
         {
             m_HasHit = Physics.Raycast(m_MyPlayerMemoryShare.m_MyTransform.position, m_MyPlayerMemoryShare.m_MyTransform.forward, out m_RaycastHitInfo, 0.4f);
-            m_MyPlayerMemoryShare.m_MyRigidbody.rotation = Quaternion.AngleAxis(Time.fixedDeltaTime * -210.0f, m_RotateLocalAxis) * m_MyPlayerMemoryShare.m_MyRigidbody.rotation;
 
             if (m_HasHit)
             {
                 UseGravityRigidbody(false);
                 m_MyPlayerMemoryShare.m_MyTransform.parent = m_RaycastHitInfo.transform.parent.parent;
+
+                if (m_RaycastHitInfo.collider.gameObject.layer == (int)StaticGlobalDel.ELayerIndex.eFloor)
+                {
+                    ChangState(EMovableState.eDeath);
+                    return;
+                }
 
                 if (m_RaycastHitInfo.collider.gameObject.tag == StaticGlobalDel.TagWin)
                     ChangState(EMovableState.eWin);
@@ -67,6 +68,20 @@ public class CJumpInsertStatePlayer : CPlayerStateBase
 
     public override void OnTriggerEnter(Collider other)
     {
+    }
+
+    public override void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == (int)StaticGlobalDel.ELayerIndex.eFloor)
+        {
+            if (m_StateTime < 0.1f)
+                return;
+
+            ChangState(EMovableState.eDeath);
+        }
+
+        if (m_StateTime > 0.1f)
+            m_RotationLoop = false;
     }
 
     public override void OnTriggerStay(Collider other)
