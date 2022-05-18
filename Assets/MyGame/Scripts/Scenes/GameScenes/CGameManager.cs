@@ -108,7 +108,12 @@ public class CGameManager : MonoBehaviour
     protected PhysicsScene _scenePredictionPhysics;
     public PhysicsScene scenePredictionPhysics => _scenePredictionPhysics;
 
-    
+    protected bool m_OpenPhysics = true;
+    public bool OpenPhysics
+    {
+        set => m_OpenPhysics = value;
+        get => m_OpenPhysics;
+    }
 
     void Awake()
     {
@@ -229,7 +234,8 @@ public class CGameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _sceneMainPhysics.Simulate(Time.fixedDeltaTime);
+        if (m_OpenPhysics)
+            _sceneMainPhysics.Simulate(Time.fixedDeltaTime);
     }
 
     //public void ShowPath(Vector3 AddForce, Rigidbody RefRigidbody)

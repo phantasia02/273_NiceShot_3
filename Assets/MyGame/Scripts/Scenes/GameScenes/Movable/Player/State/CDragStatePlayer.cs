@@ -34,6 +34,8 @@ public class CDragStatePlayer : CPlayerStateBase
         m_BuffCameraRight = m_MyGameManager.MainCamera.gameObject.transform.right;
         m_BuffCameraRight.y = 0.0f;
         m_BuffCameraRight.Normalize();
+
+        m_MyGameManager.OpenPhysics = false;
     }
 
     protected override void updataState()
@@ -45,6 +47,7 @@ public class CDragStatePlayer : CPlayerStateBase
     {
         m_MyPlayerMemoryShare.m_LinePath.gameObject.SetActive(false);
         StaticGlobalDel.ObjListChangLayer(m_MyPlayerMemoryShare.m_TargetListRenderObj, StaticGlobalDel.ELayerIndex.ePlayer);
+        m_MyGameManager.OpenPhysics = true;
     }
 
 
