@@ -167,6 +167,8 @@ public class CGameManager : MonoBehaviour
         if (CurStageData.WinMoveWinPos)
             m_WinPosition = GameObject.Find("WinPos").transform;
 
+
+        Physics.gravity = CurStageData.Gravity;
         //for (int i = 0; i < MyTargetBuilding.BrickRandomLevelAllColor.Length; i++)
         //{
         //    m_DictionaryDataLevelAllColor.Add(MyTargetBuilding.BrickRandomLevelAllColor[i].ID, MyTargetBuilding.BrickRandomLevelAllColor[i]);
@@ -175,9 +177,9 @@ public class CGameManager : MonoBehaviour
         //        MyTargetBuilding.BrickRandomLevelAllColor[i].TotleColorRatio += Dcolor._Ratio;
         //}
 
-        CAudioManager lTempAudioManager = CAudioManager.SharedInstance;
-        lTempAudioManager.PlayBGM(CAudioManager.EBGM.eOutGame);
         m_Player = this.GetComponentInChildren<CPlayer>();
+
+        
     }
 
     // Start is called before the first frame update

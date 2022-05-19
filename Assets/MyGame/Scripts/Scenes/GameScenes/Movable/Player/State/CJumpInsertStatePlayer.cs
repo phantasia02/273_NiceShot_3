@@ -46,7 +46,6 @@ public class CJumpInsertStatePlayer : CPlayerStateBase
 
             if (m_HasHit)
             {
-                Debug.Log(m_RaycastHitInfo.collider.name);
 
                 UseGravityRigidbody(false);
                 m_MyPlayerMemoryShare.m_MyTransform.parent = m_RaycastHitInfo.transform.parent.parent;

@@ -20,6 +20,9 @@ namespace MYgame.Scripts.Scenes.GameScenes.Data
         private bool _WinMoveWinPos = false;
 
         [SerializeField]
+        private Vector3 _Gravity = new Vector3(0.0f, -9.81f, 0.0f);
+
+        [SerializeField]
         private Vector3 _AddForce = Vector3.zero;
 
         [SerializeField]
@@ -35,6 +38,7 @@ namespace MYgame.Scripts.Scenes.GameScenes.Data
         private float _RotationAngle = 0.0f;
 
         public bool WinMoveWinPos => _WinMoveWinPos;
+        public Vector3 Gravity => _Gravity;
         public Vector3 AddForce => _AddForce;
         public float PredictionTime => _PredictionTime;
         public float PredictionBallSize => _PredictionBallSize;

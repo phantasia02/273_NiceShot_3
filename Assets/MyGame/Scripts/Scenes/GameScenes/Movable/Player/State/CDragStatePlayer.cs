@@ -147,7 +147,7 @@ public class CDragStatePlayer : CPlayerStateBase
         m_MyPlayerMemoryShare.m_LinePath.positionCount = 0;
 
         List<Vector3> lTempAllPathPoint = new List<Vector3>();
-        const float SimulateTime = 4.0f;
+        float SimulateTime = Mathf.Max(m_MyPlayerMemoryShare.m_CurStageData.PredictionTime / 2.0f, 1.0f);
         //const float CmaxTime = 2.5f;
         float lTempCutTime = 0.0f;
         

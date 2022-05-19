@@ -13,6 +13,7 @@ public class CDeathStateNPC_S04 : CNPCS04StateBase
 
     protected override void InState()
     {
+        m_MyNPCMemoryShare.m_MyNPCStage004.AddBuff(CMovableBuffPototype.EMovableBuff.eWeep);
     }
 
     protected override void updataState()
@@ -22,6 +23,6 @@ public class CDeathStateNPC_S04 : CNPCS04StateBase
 
     protected override void OutState()
     {
-
+        m_MyNPCMemoryShare.m_MyNPCStage004.ERemoveBuff(CMovableBuffPototype.EMovableBuff.eWeep);
     }
 }

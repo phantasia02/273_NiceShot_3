@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CNPCStage004MemoryShare : CMemoryShareBase
 {
-    public CNPCStage004 m_MyNPCMemoryShare = null;
+    public CNPCStage004 m_MyNPCStage004 = null;
    
 };
 
@@ -29,16 +29,20 @@ public class CNPCStage004 : CMovableBase
             m_MyMemoryShare = m_MyNPCMemoryShare = new CNPCStage004MemoryShare();
 
         if (m_MyMemoryShare.m_MyMovable == null)
-            m_MyMemoryShare.m_MyMovable = m_MyNPCMemoryShare.m_MyNPCMemoryShare = this;
+            m_MyMemoryShare.m_MyMovable = m_MyNPCMemoryShare.m_MyNPCStage004 = this;
 
 
 
         base.CreateMemoryShare();
 
+        // ================= Buff ===========================
+        m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eSurpris] = () => { return new CSurprisBuffBase(this); };
+        m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eScared] = () => { return new CScaredBuff(this); };
+        m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eWeep] = () => { return new CWeepBuff(this); };
         // ============ Skill ==================
         //m_MyPlayerMemoryShare.m_AllSkill.ListAllSkill.Add(new CPlayerChargeSkill(this));
 
-        
+
     }
 
     protected override void Start()

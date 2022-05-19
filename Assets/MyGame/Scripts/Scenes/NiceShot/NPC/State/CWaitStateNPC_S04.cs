@@ -13,6 +13,9 @@ public class CWaitStateNPC_S04 : CNPCS04StateBase
 
     protected override void InState()
     {
+
+        m_MyNPCMemoryShare.m_MyNPCStage004.AddBuff(CMovableBuffPototype.EMovableBuff.eScared);
+
     }
 
     protected override void updataState()
@@ -22,7 +25,7 @@ public class CWaitStateNPC_S04 : CNPCS04StateBase
 
     protected override void OutState()
     {
-       
+        m_MyNPCMemoryShare.m_MyNPCStage004.ERemoveBuff(CMovableBuffPototype.EMovableBuff.eScared);
     }
 
     public override void OnTriggerEnter(Collider other)

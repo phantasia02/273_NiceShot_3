@@ -379,7 +379,7 @@ public abstract class CMovableBase : CGameObjBas
         }
     }
 
-    public virtual void AddBuff(CMovableBuffPototype.EMovableBuff pamAddBuff)
+    public virtual void AddBuff(CMovableBuffPototype.EMovableBuff pamAddBuff, DataAddBuffInfo data = null)
     {
         foreach (CMovableBuffPototype CAB in m_CurAllBuff)
         {
@@ -391,8 +391,8 @@ public abstract class CMovableBase : CGameObjBas
         if (lTempCreaterBuff == null)
             return;
 
-        lTempCreaterBuff.InMovableState();
         m_CurAllBuff.Add(lTempCreaterBuff);
+        lTempCreaterBuff.InMovableState(data);
     }
 
     public virtual void RemoveBuff(CMovableBuffPototype pamremoveBuff)
