@@ -35,7 +35,7 @@ public class CJumpInsertStatePlayer : CPlayerStateBase
 
         float lTempAngle = 360.0f - Vector3.SignedAngle(m_MyPlayerMemoryShare.m_MyTransform.forward, lTempStartToEndDir, m_MyPlayerMemoryShare.m_MyTransform.right) + Random.Range(5.0f, 10.0f);
 
-        m_MyPlayerMemoryShare.m_MyRigidbody.DORotate(new Vector3(-lTempAngle, 0.0f, 0.0f), 0.7f, RotateMode.LocalAxisAdd);
+        m_RotateTween = m_MyPlayerMemoryShare.m_MyRigidbody.DORotate(new Vector3(-lTempAngle, 0.0f, 0.0f), 1.0f, RotateMode.LocalAxisAdd);
     }
 
     protected override void FixedupdataState()
@@ -69,7 +69,7 @@ public class CJumpInsertStatePlayer : CPlayerStateBase
 
     protected override void OutState()
     {
-       // DOTween.s
+        m_RotateTween.Kill();
     }
 
     public override void OnTriggerEnter(Collider other)
