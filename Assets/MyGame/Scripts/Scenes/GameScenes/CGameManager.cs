@@ -318,7 +318,6 @@ public class CGameManager : MonoBehaviour
                 break;
             case EState.eWinUI:
                 {
-                    DOTween.KillAll();
                     m_MyResultUI.ShowSuccessUI(0.5f);
                 }
                 break;
@@ -330,7 +329,7 @@ public class CGameManager : MonoBehaviour
                     //}
                     //if (lTempGameSceneWindow)
                     //    lTempGameSceneWindow.ShowObj(false);
-                    DOTween.KillAll();
+
                     m_MyResultUI.ShowFailedUI(0.0f);
                 }
                 break;
@@ -366,11 +365,13 @@ public class CGameManager : MonoBehaviour
 
     public void OnNext()
     {
+        DOTween.KillAll();
         m_ChangeScenes.LoadGameScenes();
     }
 
     public void OnReset()
     {
+        DOTween.KillAll();
         m_ChangeScenes.ResetScene();
     }
 
