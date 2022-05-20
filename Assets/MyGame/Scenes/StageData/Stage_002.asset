@@ -15,3 +15,6 @@ MonoBehaviour:
   _WinMoveWinPos: 0
   _AddForce: {x: 3, y: 10, z: 10}
   _PredictionTime: 0.5
+  _PredictionBallSize: 1
+  _JumpStatePlayerType: 0
+  _RotationAngle: -20

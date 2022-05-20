@@ -26,7 +26,7 @@ public abstract class CActor : CMovableBase
     public enum EActorType
     {
         ePlayer     = 0,
-        eEnemy      = 1,
+        eNPC        = 1,
         eMax
     };
 
@@ -76,9 +76,14 @@ public abstract class CActor : CMovableBase
 
     protected override void CreateMemoryShare()
     {
-        m_MyActorMemoryShare = (CActorMemoryShare)m_MyMemoryShare;
+
+        if (m_MyMemoryShare == null)
+            m_MyMemoryShare = m_MyActorMemoryShare = new CActorMemoryShare();
+
+        if (m_MyMemoryShare.m_MyMovable == null)
+            m_MyMemoryShare.m_MyMovable = m_MyActorMemoryShare.m_MyActor = this;
+
         m_MyActorMemoryShare.m_AllObj               = m_AllObj;
-        m_MyActorMemoryShare.m_MyActor              = this;
       
         SetBaseMemoryShare();
 
@@ -108,12 +113,13 @@ public abstract class CActor : CMovableBase
 
     protected override void Start()
     {
-        
         base.Start();
+        m_MyGameManager.AddActorBaseListData(this);
     }
 
     protected override void OnDestroy()
     {
+        m_MyGameManager.RemoveActorBaseListData(this);
         base.OnDestroy();
     }
 

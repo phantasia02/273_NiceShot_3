@@ -7,6 +7,16 @@ using UniRx;
 using MYgame.Scripts.Scenes.GameScenes.Data;
 
 
+//interface IProduct
+//{
+//    int aaa;
+//    string model { get; set; }//宣告 model這個屬性需有 get 與 set 兩個方法
+//    decimal price { get; set; }
+
+//    decimal Tax();
+//}
+
+
 /// <summary>
 /// Player Memory Share Data
 /// </summary>
@@ -50,7 +60,6 @@ public class CPlayerMemoryShare : CMemoryShareBase
 public class CPlayer : CMovableBase
 {
     public override EMovableType MyMovableType() { return EMovableType.ePlayer; }
-    public override EObjType ObjType() { return EObjType.ePlayer; }
 
     protected float m_MaxMoveDirSize = 5.0f;
     public float MaxMoveDirSize => m_MaxMoveDirSize;
@@ -108,8 +117,14 @@ public class CPlayer : CMovableBase
 
         m_AllState[(int)StaticGlobalDel.EMovableState.eDrag].AllThisState.Add(new CDragStatePlayer(this));
 
-        m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpStatePlayer(this));
-        m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpNoPhysicsStatePlayer(this));
+
+        if (m_MyGameManager.CurStageData.JumpStatePlayerType == EJumpStatePlayerType.eNormal)
+        {
+            m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpStatePlayer(this));
+            m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpNoPhysicsStatePlayer(this));
+        }
+        else if (m_MyGameManager.CurStageData.JumpStatePlayerType == EJumpStatePlayerType.eInsert)
+            m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpInsertStatePlayer(this));
 
         if (m_MyGameManager.CurStageData.WinMoveWinPos)
             m_AllState[(int)StaticGlobalDel.EMovableState.eWin].AllThisState.Add(new CWinStatePlayer(this));
@@ -312,11 +327,6 @@ public class CPlayer : CMovableBase
     public UniRx.Subject<UniRx.Unit> ObserverPlayEndEvent()
     {
         return m_PlayEndEvent ?? (m_PlayEndEvent = new UniRx.Subject<UniRx.Unit>());
-    }
-
-    public UniRx.Subject<UniRx.Unit> ObserverFritPlay()
-    {
-        return m_MyPlayerMemoryShare.m_FritPlay ?? (m_MyPlayerMemoryShare.m_FritPlay = new UniRx.Subject<UniRx.Unit>());
     }
 
     // ===================== UniRx ======================

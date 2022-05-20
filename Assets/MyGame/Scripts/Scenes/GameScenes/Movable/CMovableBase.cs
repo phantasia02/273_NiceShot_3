@@ -50,10 +50,9 @@ public abstract class CMovableBase : CGameObjBas
 
     public enum EMovableType
     {
-        eNull               = 0,
+        eActor              = 0,
         ePlayer             = 1,
-        eActor              = 2,
-    
+        eNpc                = 2,
         eMax
     };
 
@@ -266,12 +265,13 @@ public abstract class CMovableBase : CGameObjBas
     // Start is called before the first frame update
     protected override void Start()
     {
-        
         base.Start();
+        m_MyGameManager.AddMovableBaseListData(this);
     }
 
     protected override void OnDestroy()
     {
+        m_MyGameManager.RemoveMovableBaseListData(this);
         base.OnDestroy();
     }
 
@@ -378,20 +378,20 @@ public abstract class CMovableBase : CGameObjBas
         }
     }
 
-    public virtual void AddBuff(CMovableBuffPototype.EMovableBuff pamAddBuff)
+    public virtual void AddBuff(CMovableBuffPototype.EMovableBuff pamAddBuff, DataAddBuffInfo data = null)
     {
         foreach (CMovableBuffPototype CAB in m_CurAllBuff)
         {
             if (CAB.BuffType() == pamAddBuff)
                 return;
         }
-
+        
         CMovableBuffPototype lTempCreaterBuff = m_AllCreateList[(int)pamAddBuff]();
         if (lTempCreaterBuff == null)
             return;
 
-        lTempCreaterBuff.InMovableState();
         m_CurAllBuff.Add(lTempCreaterBuff);
+        lTempCreaterBuff.InMovableState(data);
     }
 
     public virtual void RemoveBuff(CMovableBuffPototype pamremoveBuff)

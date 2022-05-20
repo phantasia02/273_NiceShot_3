@@ -46,11 +46,8 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
 
     public enum EAllFXType
     {
-        eSplash             = 0,
-        eSpark              = 1,
-        eMainFire           = 2,
-        eChargeSkillMainFx  = 3,
-
+        eScared = 0,
+        eHappy  = 1,
         eMax,
     };
 
@@ -67,6 +64,12 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
     {
         eReadyGameWindow    = 0,
         eMax,
+    };
+
+    public enum EExpressionSpriteType
+    {
+        eScared = 0,
+        eWeep = 1,
     };
 
 
@@ -86,6 +89,7 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
     [VarRename(CGGameSceneData.EOtherObj.eMax)]
     [SerializeField]  public    GameObject[]                m_AllOtherObj               = null;
     [SerializeField]  public    GameObject[]                m_UIObj                     = null;
+    [SerializeField]  public    Sprite[]                    m_AllExpressionSprite          = null;
 
     [SerializeField]  public    StageData[]                 m_AllStageData              = null;
     [SerializeField]  public    GameObject                  m_PrefabEventSystem         = null;
