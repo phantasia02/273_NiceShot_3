@@ -46,7 +46,7 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
 
     public enum EAllFXType
     {
-        eExpression         = 0,
+        eScared = 0,
         eMax,
     };
 

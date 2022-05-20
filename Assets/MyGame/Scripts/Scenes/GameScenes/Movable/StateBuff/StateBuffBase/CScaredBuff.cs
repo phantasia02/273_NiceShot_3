@@ -12,15 +12,11 @@ public class CScaredBuff : CExpressionBuff
 
     }
 
-    public override void ChageImage()
+    public override void ShowFX()
     {
         CGGameSceneData lTempGameSceneData = CGGameSceneData.SharedInstance;
-        m_SpriteRenderer.sprite = lTempGameSceneData.m_AllExpressionSprite[(int)CGGameSceneData.EExpressionSpriteType.eScared];
-    }
+        m_ExpressionObj = StaticGlobalDel.NewFxAddParentShow(m_ShowPos, CGGameSceneData.EAllFXType.eScared);
 
-    public override void DoTweenAnimation()
-    {
-        m_TweenAnimation = m_ExpressionObj.DOShakeRotation(1.0f, 10, 10, 90, false).SetLoops(-1).SetId(m_ExpressionObj);
     }
 
 }

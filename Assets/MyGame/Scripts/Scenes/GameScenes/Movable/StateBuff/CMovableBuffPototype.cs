@@ -17,7 +17,6 @@ public abstract class CMovableBuffPototype : CExternalOBJBase
     {
         eSurpris    = 0,
         eScared     = 1,
-        eWeep       = 2,
         eMax
     }
     abstract public EMovableBuff BuffType();

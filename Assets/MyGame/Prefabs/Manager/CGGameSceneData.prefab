@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllFX:
-  - {fileID: 6543029137001567627, guid: 53ac88ae37f0b834c9cf7666295b6c5f, type: 3}
+  - {fileID: 6543029137001567627, guid: 2dbe4c3f134d1394db37a1a471ebc2ac, type: 3}
   m_AllOtherObj: []
   m_UIObj:
   - {fileID: 4810386094064599752, guid: 3bdf34b18e2ed1b43a47b878581bb64a, type: 3}

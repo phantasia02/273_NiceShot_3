@@ -19,6 +19,12 @@ public class CNPCStage004 : CActor
     {
         m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStateNPC_S04(this));
         m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStateNPC_S04(this));
+
+        // ================= Buff ===========================
+        m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eSurpris] = () => { return new CSurprisBuffBase(this); };
+        m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eScared] = () => { return new CScaredBuff(this); };
+        // ============ Skill ==================
+        //m_MyPlayerMemoryShare.m_AllSkill.ListAllSkill.Add(new CPlayerChargeSkill(this));
     }
 
     protected override void CreateMemoryShare()
@@ -30,17 +36,7 @@ public class CNPCStage004 : CActor
             m_MyNPCMemoryShare.m_MyMovable = m_MyNPCMemoryShare.m_MyActor = m_MyNPCMemoryShare.m_MyNPCStage004 = this;
 
 
-
         base.CreateMemoryShare();
-
-        // ================= Buff ===========================
-        m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eSurpris] = () => { return new CSurprisBuffBase(this); };
-        m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eScared] = () => { return new CScaredBuff(this); };
-        m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eWeep] = () => { return new CWeepBuff(this); };
-        // ============ Skill ==================
-        //m_MyPlayerMemoryShare.m_AllSkill.ListAllSkill.Add(new CPlayerChargeSkill(this));
-
-
     }
 
     protected override void Start()
