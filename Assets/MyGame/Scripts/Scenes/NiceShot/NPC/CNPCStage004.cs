@@ -19,10 +19,11 @@ public class CNPCStage004 : CActor
     {
         m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStateNPC_S04(this));
         m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStateNPC_S04(this));
+        m_AllState[(int)StaticGlobalDel.EMovableState.eWin].AllThisState.Add(new CWinStateNPC_S04(this));
 
         // ================= Buff ===========================
         m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eSurpris] = () => { return new CSurprisBuffBase(this); };
-        m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eScared] = () => { return new CScaredBuff(this); };
+        m_AllCreateList[(int)CMovableBuffPototype.EMovableBuff.eExpression] = () => { return new CExpressionBuff(this); };
         // ============ Skill ==================
         //m_MyPlayerMemoryShare.m_AllSkill.ListAllSkill.Add(new CPlayerChargeSkill(this));
     }

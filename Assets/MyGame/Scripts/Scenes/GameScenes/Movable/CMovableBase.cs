@@ -385,7 +385,7 @@ public abstract class CMovableBase : CGameObjBas
             if (CAB.BuffType() == pamAddBuff)
                 return;
         }
-
+        
         CMovableBuffPototype lTempCreaterBuff = m_AllCreateList[(int)pamAddBuff]();
         if (lTempCreaterBuff == null)
             return;

@@ -16,7 +16,9 @@ public class CWaitStateNPC_S04 : CNPCS04StateBase
     protected override void InState()
     {
 
-        m_MyNPCMemoryShare.m_MyNPCStage004.AddBuff(CMovableBuffPototype.EMovableBuff.eScared);
+        DataAddBuffInfo lTempDataAddBuffInfo = new DataAddBuffInfo();
+        lTempDataAddBuffInfo.m_ListDataIndex.Add((int)CGGameSceneData.EAllFXType.eScared);
+        m_MyNPCMemoryShare.m_MyNPCStage004.AddBuff(CMovableBuffPototype.EMovableBuff.eExpression, lTempDataAddBuffInfo);
 
 
         m_ShakePosition = m_MyNPCMemoryShare.m_MyTransform.DOShakePosition(1.0f, strength : 0.01f, fadeOut : false).SetLoops(-1);
@@ -33,7 +35,7 @@ public class CWaitStateNPC_S04 : CNPCS04StateBase
         if (m_ShakePosition != null)
             m_ShakePosition.Kill();
 
-        m_MyNPCMemoryShare.m_MyNPCStage004.ERemoveBuff(CMovableBuffPototype.EMovableBuff.eScared);
+        m_MyNPCMemoryShare.m_MyNPCStage004.ERemoveBuff(CMovableBuffPototype.EMovableBuff.eExpression);
     }
 
     //public override void OnTriggerEnter(Collider other)

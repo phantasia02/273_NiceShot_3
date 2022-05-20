@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public abstract class CExpressionBuff : CMovableBuffPototype
+public class CExpressionBuff : CMovableBuffPototype
 {
+    public override EMovableBuff BuffType() { return EMovableBuff.eExpression; }
     //protected Tween m_TweenAnimation = null;
     //protected SpriteRenderer m_SpriteRenderer = null;
 
@@ -30,7 +31,10 @@ public abstract class CExpressionBuff : CMovableBuffPototype
         }
 
         m_ShowPos = lTempFxPos.transform;
-        ShowFX();
+        //ShowFX();
+
+        CGGameSceneData lTempGameSceneData = CGGameSceneData.SharedInstance;
+        m_ExpressionObj = StaticGlobalDel.NewFxAddParentShow(m_ShowPos, (CGGameSceneData.EAllFXType)data.m_ListDataIndex[0]);
 
         //m_ExpressionObj = StaticGlobalDel.NewFxAddParentShow(lTempFxPos.transform, CGGameSceneData.EAllFXType.eExpression);
         //m_ExpressionObj.rotation = lTempFxPos.transform.rotation;
@@ -41,7 +45,7 @@ public abstract class CExpressionBuff : CMovableBuffPototype
         //m_TweenAnimation = m_ExpressionObj.DOShakeRotation(1.0f, 10, 10, 90, false).SetLoops(-1).SetId(m_ExpressionObj);
     }
 
-    abstract public void ShowFX();
+    public virtual void ShowFX() { }
     //abstract public void DoTweenAnimation();
 
 
@@ -55,6 +59,6 @@ public abstract class CExpressionBuff : CMovableBuffPototype
         //    m_TweenAnimation.Kill();
 
         if (m_ExpressionObj != null)
-            GameObject.Destroy(m_ExpressionObj);
+            GameObject.Destroy(m_ExpressionObj.gameObject);
     }
 }

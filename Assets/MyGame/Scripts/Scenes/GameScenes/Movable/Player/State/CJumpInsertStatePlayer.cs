@@ -33,7 +33,7 @@ public class CJumpInsertStatePlayer : CPlayerStateBase
         Vector3 lTempStartToEndDir = m_MyPlayerMemoryShare.m_EndPos - m_MyPlayerMemoryShare.m_StartePos.position;
         lTempStartToEndDir.Normalize();
 
-        float lTempAngle = 360.0f - Vector3.SignedAngle(m_MyPlayerMemoryShare.m_MyTransform.forward, lTempStartToEndDir, m_MyPlayerMemoryShare.m_MyTransform.right) + Random.Range(5.0f, 10.0f);
+        float lTempAngle = 360.0f - Vector3.SignedAngle(m_MyPlayerMemoryShare.m_MyTransform.forward, lTempStartToEndDir, m_MyPlayerMemoryShare.m_MyTransform.right) + Random.Range(20.0f, 25.0f);
 
         m_RotateTween = m_MyPlayerMemoryShare.m_MyRigidbody.DORotate(new Vector3(-lTempAngle, 0.0f, 0.0f), 1.0f, RotateMode.LocalAxisAdd);
     }
@@ -109,7 +109,6 @@ public class CJumpInsertStatePlayer : CPlayerStateBase
 
     public override void OnTriggerStay(Collider other)
     {
-        Debug.Log($"CJumpInsertStatePlayer = {other.name}");
         CChangeDirTag lTempCChangeDirTag = other.gameObject.GetComponent<CChangeDirTag>();
 
         if (lTempCChangeDirTag == null)

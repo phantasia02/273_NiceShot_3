@@ -318,6 +318,15 @@ public class CGameManager : MonoBehaviour
                 break;
             case EState.eWinUI:
                 {
+                    if (SceneManager.GetActiveScene().buildIndex == 4)
+                    {
+                        CActorBaseListData lTempCActorBaseListData = GetTypeActorBaseListData(CActor.EActorType.eNPC);
+
+                        foreach (var item in lTempCActorBaseListData.m_ActorBaseListData)
+                            item.SetChangState( CMovableStatePototype.EMovableState.eWin);
+
+                    }
+
                     m_MyResultUI.ShowSuccessUI(0.5f);
                 }
                 break;
