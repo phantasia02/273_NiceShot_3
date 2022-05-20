@@ -12,7 +12,6 @@ public class CNPCStage004MemoryShare : CMemoryShareBase
 public class CNPCStage004 : CMovableBase
 {
     public override EMovableType MyMovableType() { return EMovableType.eNpc; }
-    public override EObjType ObjType() { return EObjType.eNpc; }
 
     protected CNPCStage004MemoryShare m_MyNPCMemoryShare = null;
 
