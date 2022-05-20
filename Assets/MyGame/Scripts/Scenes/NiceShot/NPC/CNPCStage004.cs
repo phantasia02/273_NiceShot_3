@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class CNPCStage004MemoryShare : CMemoryShareBase
+public class CNPCStage004MemoryShare : CActorMemoryShare
 {
     public CNPCStage004 m_MyNPCStage004 = null;
    
 };
 
-public class CNPCStage004 : CMovableBase
+public class CNPCStage004 : CActor
 {
-    public override EMovableType MyMovableType() { return EMovableType.eNpc; }
-
+    public override EActorType MyActorType() { return EActorType.eNPC; }
     protected CNPCStage004MemoryShare m_MyNPCMemoryShare = null;
 
 
@@ -25,10 +24,10 @@ public class CNPCStage004 : CMovableBase
     protected override void CreateMemoryShare()
     {
         if (m_MyMemoryShare == null)
-            m_MyMemoryShare = m_MyNPCMemoryShare = new CNPCStage004MemoryShare();
+            m_MyMemoryShare = m_MyActorMemoryShare = m_MyNPCMemoryShare = new CNPCStage004MemoryShare();
 
         if (m_MyMemoryShare.m_MyMovable == null)
-            m_MyMemoryShare.m_MyMovable = m_MyNPCMemoryShare.m_MyNPCStage004 = this;
+            m_MyNPCMemoryShare.m_MyMovable = m_MyNPCMemoryShare.m_MyActor = m_MyNPCMemoryShare.m_MyNPCStage004 = this;
 
 
 
