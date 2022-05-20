@@ -50,11 +50,9 @@ public abstract class CMovableBase : CGameObjBas
 
     public enum EMovableType
     {
-        eNull               = 0,
+        eActor              = 0,
         ePlayer             = 1,
-        eActor              = 2,
-        eNpc                = 3,
-    
+        eNpc                = 2,
         eMax
     };
 
@@ -267,12 +265,13 @@ public abstract class CMovableBase : CGameObjBas
     // Start is called before the first frame update
     protected override void Start()
     {
-        
         base.Start();
+        m_MyGameManager.AddMovableBaseListData(this);
     }
 
     protected override void OnDestroy()
     {
+        m_MyGameManager.RemoveMovableBaseListData(this);
         base.OnDestroy();
     }
 

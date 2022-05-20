@@ -13,10 +13,7 @@ public abstract class CGameObjBas : MonoBehaviour
     public enum EObjType
     {
         eMovable            = 0,
-        eBrickObj           = 1,
-        eOriginBuilding     = 2,
-        ePlayer             = 3,
-        eNpc                = 4,
+        eActor              = 1,
         eMax
     }
 
@@ -39,12 +36,13 @@ public abstract class CGameObjBas : MonoBehaviour
             m_MyGameManager = GameObject.FindObjectOfType<CGameManager>();
 
         m_OriginalParent = gameObject.transform.parent;
+       
     }
 
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        
+        m_MyGameManager.AddGameObjBasListData(this);
     }
 
     public virtual void Init()
@@ -65,5 +63,6 @@ public abstract class CGameObjBas : MonoBehaviour
 
     protected virtual void OnDestroy()
     {
+        m_MyGameManager.RemoveGameObjBasListData(this);
     }
 }

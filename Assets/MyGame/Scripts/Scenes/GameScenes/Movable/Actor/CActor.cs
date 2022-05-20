@@ -26,7 +26,6 @@ public abstract class CActor : CMovableBase
     public enum EActorType
     {
         ePlayer     = 0,
-        eEnemy      = 1,
         eMax
     };
 
@@ -108,12 +107,13 @@ public abstract class CActor : CMovableBase
 
     protected override void Start()
     {
-        
         base.Start();
+        m_MyGameManager.AddActorBaseListData(this);
     }
 
     protected override void OnDestroy()
     {
+        m_MyGameManager.RemoveActorBaseListData(this);
         base.OnDestroy();
     }
 

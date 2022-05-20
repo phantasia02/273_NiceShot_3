@@ -60,7 +60,6 @@ public class CPlayerMemoryShare : CMemoryShareBase
 public class CPlayer : CMovableBase
 {
     public override EMovableType MyMovableType() { return EMovableType.ePlayer; }
-    public override EObjType ObjType() { return EObjType.ePlayer; }
 
     protected float m_MaxMoveDirSize = 5.0f;
     public float MaxMoveDirSize => m_MaxMoveDirSize;
