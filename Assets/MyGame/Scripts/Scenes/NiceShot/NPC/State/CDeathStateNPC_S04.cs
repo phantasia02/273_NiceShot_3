@@ -13,16 +13,25 @@ public class CDeathStateNPC_S04 : CNPCS04StateBase
 
     protected override void InState()
     {
-        m_MyNPCMemoryShare.m_MyNPCStage004.AddBuff(CMovableBuffPototype.EMovableBuff.eWeep);
+
+        m_MyNPCMemoryShare.m_MyActor.EnabledRagdoll(true);
+
+        IGameObjOpenGravity[] lTempAllTargetObj = m_MyNPCMemoryShare.m_MyActor.GetComponentsInChildren<IGameObjOpenGravity>();
+
+        foreach (var item in lTempAllTargetObj)
+            item.OpenGravity(true);
     }
 
     protected override void updataState()
     {
+        if (MomentinTime(0.5f))
+            m_MyGameManager.SetState(CGameManager.EState.eGameOver);
+
         base.updataState();
     }
 
     protected override void OutState()
     {
-        m_MyNPCMemoryShare.m_MyNPCStage004.ERemoveBuff(CMovableBuffPototype.EMovableBuff.eWeep);
+
     }
 }

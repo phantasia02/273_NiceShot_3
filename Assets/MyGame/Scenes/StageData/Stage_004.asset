@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Stage_004
   m_EditorClassIdentifier: 
   _WinMoveWinPos: 0
+  _Gravity: {x: 0, y: -9.81, z: 0}
   _AddForce: {x: 10, y: 10, z: 40}
   _PredictionTime: 1.5
   _PredictionBallSize: 0.1

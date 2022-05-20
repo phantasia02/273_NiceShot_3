@@ -47,17 +47,34 @@ public class CJumpInsertStatePlayer : CPlayerStateBase
             if (m_HasHit)
             {
 
-                UseGravityRigidbody(false);
-                m_MyPlayerMemoryShare.m_MyTransform.parent = m_RaycastHitInfo.transform.parent.parent;
+                //UseGravityRigidbody(false);
 
+
+                //m_MyPlayerMemoryShare.m_MyTransform.parent = m_RaycastHitInfo.transform;
+                UseGravityRigidbody(false);
                 if (m_RaycastHitInfo.collider.gameObject.layer == (int)StaticGlobalDel.ELayerIndex.eFloor)
                 {
+                    
                     ChangState(EMovableState.eDeath);
                     return;
                 }
 
                 if (m_RaycastHitInfo.collider.gameObject.tag == StaticGlobalDel.TagWin)
+                {
                     ChangState(EMovableState.eWin);
+                    return;
+                }
+
+                CActor lTempCActor = m_RaycastHitInfo.collider.gameObject.GetComponentInParent<CActor>();
+                if (lTempCActor != null)
+                {
+                    lTempCActor.SetChangState(EMovableState.eDeath);
+
+                    foreach (var item in m_MyPlayerMemoryShare.m_PlayerListRenderObj)
+                        item.transform.parent = m_RaycastHitInfo.transform;
+
+                    return;
+                }
             }
         }
     }
@@ -92,6 +109,7 @@ public class CJumpInsertStatePlayer : CPlayerStateBase
 
     public override void OnTriggerStay(Collider other)
     {
+        Debug.Log($"CJumpInsertStatePlayer = {other.name}");
         CChangeDirTag lTempCChangeDirTag = other.gameObject.GetComponent<CChangeDirTag>();
 
         if (lTempCChangeDirTag == null)

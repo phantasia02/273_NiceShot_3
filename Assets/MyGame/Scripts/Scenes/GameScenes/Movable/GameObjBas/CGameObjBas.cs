@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface IGameObjOpenGravity
+{
+    void OpenGravity(bool open);
+}
+
+
 public class CGameObjBasListData
 {
     public List<CGameObjBas> m_GameObjBasListData = new List<CGameObjBas>();
@@ -14,6 +20,7 @@ public abstract class CGameObjBas : MonoBehaviour
     {
         eMovable            = 0,
         eActor              = 1,
+        eTargetApple        = 2,
         eMax
     }
 
