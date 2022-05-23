@@ -215,9 +215,4 @@ public class CDragStatePlayer : CPlayerStateBase
         else
             ChangState(EMovableState.eJump);
     }
-
-    public void aaaqqq(CDataJumpBounce vvv)
-    {
-
-    }
 }

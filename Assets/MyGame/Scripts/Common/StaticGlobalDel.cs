@@ -33,6 +33,7 @@ public static class StaticGlobalDel
 
     public enum ELayerIndex
     {
+        eDef                    = 0,
         eWater                  = 4,
         eUI                     = 5,
         eFloor                  = 6,

@@ -5,7 +5,7 @@ using Cinemachine;
 using DG.Tweening;
 using UniRx;
 using MYgame.Scripts.Scenes.GameScenes.Data;
-
+using UnityEngine.SceneManagement;
 
 //interface IProduct
 //{
@@ -115,7 +115,10 @@ public class CPlayer : CMovableBase
         m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStatePlayer(this));
         m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CReadyPlayStatePlayer(this));
 
-        m_AllState[(int)StaticGlobalDel.EMovableState.eDrag].AllThisState.Add(new CDragStatePlayer(this));
+        if (SceneManager.GetActiveScene().buildIndex == 5)
+            m_AllState[(int)StaticGlobalDel.EMovableState.eDrag].AllThisState.Add(new CDragStraightLineStatePlayer(this));
+        else
+           m_AllState[(int)StaticGlobalDel.EMovableState.eDrag].AllThisState.Add(new CDragStatePlayer(this));
 
 
         if (m_MyGameManager.CurStageData.JumpStatePlayerType == EJumpStatePlayerType.eNormal)
@@ -213,7 +216,6 @@ public class CPlayer : CMovableBase
                 return;
         }
 #endif
-
         if ((int)m_MyGameManager.CurState < (int)CGameManager.EState.ePlay)
             return;
 
@@ -221,13 +223,13 @@ public class CPlayer : CMovableBase
         //{
         //    PlayerMouseDown();
         //}
-
         if (Input.GetMouseButtonUp(0))
         {
             PlayerMouseUp();
         }
         else if (Input.GetMouseButton(0))
         {
+            
             PlayerMouseDrag();
         }
     }
@@ -269,7 +271,6 @@ public class CPlayer : CMovableBase
     {
         //if (!m_MyPlayerMemoryShare.m_bDown)
         //    return;
-
         m_MyPlayerMemoryShare.m_CurMouseDownPos = Input.mousePosition;
 
         DataState lTempDataState = m_AllState[(int)CurState];
