@@ -58,6 +58,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8c5216833d7b76f439d37b4c42c7d98d, type: 2}
   - {fileID: 11400000, guid: ac2a622ddecd6c34bb176658ccd3220e, type: 2}
   - {fileID: 11400000, guid: 0c03634de5e36194182064d080e3a76c, type: 2}
+  - {fileID: 11400000, guid: 0c75f47c95b2cfa46934c07a98290e8e, type: 2}
   m_PrefabEventSystem: {fileID: 1792202897340608778, guid: e66c430660b85334ca70bd0fec000779,
     type: 3}
   m_SaveManager: {fileID: 1842041293832986182, guid: c70ec8a811342bd48815a2f11379fcda,
