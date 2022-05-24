@@ -16,6 +16,7 @@ public class CDragStraightLineStatePlayer : CPlayerStateBase
 
     protected override void InState()
     {
+
         m_MyPlayerMemoryShare.m_MyPlayer.ObserverPlayStartEvent().OnNext(UniRx.Unit.Default);
 
         StaticGlobalDel.ObjListChangLayer(m_MyPlayerMemoryShare.m_TargetListRenderObj, StaticGlobalDel.ELayerIndex.eRenderFlashModelShow);
@@ -46,12 +47,22 @@ public class CDragStraightLineStatePlayer : CPlayerStateBase
     public override void MouseDrag()
     {
         Vector3 lTempV3 = m_MyPlayerMemoryShare.m_CurMouseDownPos - m_MyPlayerMemoryShare.m_DownMouseDownPos;
-       // Debug.Log($"m_MyPlayerMemoryShare.m_CurMouseDownPos = {m_MyPlayerMemoryShare.m_CurMouseDownPos}");
+
         lTempV3 = (m_BuffCameraRight * (lTempV3.x / Screen.width) * m_MyPlayerMemoryShare.m_CurStageData.AddForce.x) +
                     (Vector3.up * (lTempV3.y / Screen.height) * m_MyPlayerMemoryShare.m_CurStageData.AddForce.y);
 
         
         m_MyPlayerMemoryShare.m_MyTransform.position = m_MyPlayerMemoryShare.m_StartePos.position + lTempV3;
+    }
+
+
+    public override void MouseUp()
+    {
+        Transform lTempBullet = StaticGlobalDel.NewFxAddParentShow(m_MyGameManager.gameObject.transform, CGGameSceneData.EAllFXType.eBullet);
+        lTempBullet.position = m_MyPlayerMemoryShare.m_MyTransform.position;
+        lTempBullet.forward = m_MyPlayerMemoryShare.m_MyTransform.forward;
+
+        m_MyPlayerMemoryShare.m_MyPlayer.SetChangState(EMovableState.eWait, 1);
     }
 
 }
