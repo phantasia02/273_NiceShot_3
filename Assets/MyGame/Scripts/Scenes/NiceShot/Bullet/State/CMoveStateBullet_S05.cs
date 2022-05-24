@@ -19,7 +19,7 @@ public class CMoveStateBullet_S05 : CBulletS05StateBase
 
     protected override void updataState()
     {
-        m_MyBulletMemoryShare.m_MyTransform.Translate(m_MyBulletMemoryShare.m_MyTransform.forward * Time.deltaTime * 10.0f, Space.World);
+        m_MyBulletMemoryShare.m_MyTransform.Translate(m_MyBulletMemoryShare.m_MyTransform.forward * Time.deltaTime * 1.0f, Space.World);
         base.updataState();
     }
 

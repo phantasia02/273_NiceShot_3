@@ -112,7 +112,13 @@ public class CPlayer : CMovableBase
 
     protected override void AddInitState()
     {
-        m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStatePlayer(this));
+        if (SceneManager.GetActiveScene().buildIndex == 5)
+            m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitCamStatePlayer(this));
+        else
+            m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStatePlayer(this));
+
+
+        
         m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CReadyPlayStatePlayer(this));
 
         if (SceneManager.GetActiveScene().buildIndex == 5)
@@ -269,7 +275,6 @@ public class CPlayer : CMovableBase
 
     public void SaveMouseDown()
     {
-        Debug.Log($"Input.mousePosition = {Input.mousePosition}");
         m_MyPlayerMemoryShare.m_bDown = true;
         m_MyPlayerMemoryShare.m_OldMouseDownPos = Input.mousePosition;
         m_MyPlayerMemoryShare.m_DownMouseDownPos = Input.mousePosition;
