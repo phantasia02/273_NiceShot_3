@@ -27,6 +27,7 @@ public abstract class CActor : CMovableBase
     {
         ePlayer     = 0,
         eNPC        = 1,
+        eTarget     = 2,
         eMax
     };
 
