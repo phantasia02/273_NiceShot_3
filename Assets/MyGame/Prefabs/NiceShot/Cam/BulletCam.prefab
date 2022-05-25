@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3871066746950533250}
-  m_LocalRotation: {x: 0.25153944, y: -0.61272675, z: 0.21472926, w: 0.717764}
+  m_LocalRotation: {x: -0.011690575, y: 0.94675803, z: -0.034602262, w: -0.3198676}
   m_LocalPosition: {x: 0, y: 0, z: 2.9902964}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Path: {fileID: 5536622574373427893}
   m_UpdateMethod: 0
   m_PositionUnits: 1
-  m_Speed: 2
+  m_Speed: 1
   m_Position: 0
 --- !u!1 &4493527303302990928
 GameObject:
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 8383139649937474300}
   m_Follow: {fileID: 1992152364676617666}
   m_Lens:
-    FieldOfView: 40
+    FieldOfView: 20
     OrthographicSize: 5
     NearClipPlane: 1
     FarClipPlane: 100
@@ -264,7 +264,7 @@ MonoBehaviour:
     pathColor: {r: 0, g: 1, b: 0, a: 1}
     inactivePathColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     width: 0.2
-  m_Looped: 1
+  m_Looped: 0
   m_Waypoints:
   - position: {x: 0, y: 0, z: 2.9902964}
     roll: 0

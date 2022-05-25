@@ -34,9 +34,9 @@ public class CDragStraightLineStatePlayer : CPlayerStateBase
         m_MyGameManager.OpenPhysics = false;
         m_DefCurVcamQ = m_MyGameManager.CurVcamObjAnima.rotation;
         //m_MyGameManager.CurVcamObjAnima.rotation.
-        Debug.Log($"m_MyGameManager.CurVcamObjAnima.rotation.x = {m_MyGameManager.CurVcamObjAnima.rotation.x}");
-        Debug.Log($"m_MyGameManager.CurVcamObjAnima.rotation.y = {m_MyGameManager.CurVcamObjAnima.rotation.y}");
-        Debug.Log($"m_MyGameManager.CurVcamObjAnima.rotation.z = {m_MyGameManager.CurVcamObjAnima.rotation.z}");
+        //Debug.Log($"m_MyGameManager.CurVcamObjAnima.rotation.x = {m_MyGameManager.CurVcamObjAnima.rotation.x}");
+        //Debug.Log($"m_MyGameManager.CurVcamObjAnima.rotation.y = {m_MyGameManager.CurVcamObjAnima.rotation.y}");
+        //Debug.Log($"m_MyGameManager.CurVcamObjAnima.rotation.z = {m_MyGameManager.CurVcamObjAnima.rotation.z}");
 
     }
 

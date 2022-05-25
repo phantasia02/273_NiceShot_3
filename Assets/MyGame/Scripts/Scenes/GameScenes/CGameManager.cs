@@ -43,6 +43,18 @@ public class CGameManager : MonoBehaviour
     [SerializeField] protected Transform    m_CurVcamObjAnima               = null;
     public Transform CurVcamObjAnima => m_CurVcamObjAnima;
 
+    [SerializeField] protected GameObject[] m_TimeGameObject = null;
+    public GameObject GetTimeObj(int index)
+    {
+        if (m_TimeGameObject.Length >= index)
+        {
+            Debug.LogError("GetTimeObj over index");
+            return null;
+        }
+
+        return m_TimeGameObject[index];
+    }
+
     [SerializeField] protected GameObject   PrefabGameSceneData             = null;
     [SerializeField] protected GameObject   m_BG                            = null;
 

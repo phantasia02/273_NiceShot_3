@@ -5,6 +5,7 @@ using UnityEngine;
 public class CBulletStage005MemoryShare : CMemoryShareBase
 {
     public CBulletStage005 m_MyBullet = null;
+    
 
 };
 
@@ -13,6 +14,13 @@ public class CBulletStage005 : CMovableBase
 {
     public override EMovableType MyMovableType() { return EMovableType.eBullet; }
     protected CBulletStage005MemoryShare m_MyBulletMemoryShare = null;
+
+    protected bool m_MyCreateCamer = false;
+    public bool CreateCamer
+    {
+        get { return m_MyCreateCamer; }
+        set { m_MyCreateCamer = value; }
+    }
 
 
     protected override void AddInitState()
