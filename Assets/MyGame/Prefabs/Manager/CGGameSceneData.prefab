@@ -47,8 +47,9 @@ MonoBehaviour:
   m_AllFX:
   - {fileID: 6543029137001567627, guid: 2dbe4c3f134d1394db37a1a471ebc2ac, type: 3}
   - {fileID: 6543029137001567627, guid: 5935e68465f1bfd40aa0e60b33562b96, type: 3}
-  - {fileID: 8491079825844394989, guid: 1d70901139c1e364cb39034557a0b925, type: 3}
-  m_AllOtherObj: []
+  - {fileID: 7134121928904763792, guid: 1d70901139c1e364cb39034557a0b925, type: 3}
+  m_AllOtherObj:
+  - {fileID: 8383139649937474301, guid: c9bf05cbf93c9464f9e29c580e7ecb7a, type: 3}
   m_UIObj:
   - {fileID: 4810386094064599752, guid: 3bdf34b18e2ed1b43a47b878581bb64a, type: 3}
   m_AllExpressionSprite:

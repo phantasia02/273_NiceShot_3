@@ -100,6 +100,15 @@ public static class StaticGlobalDel
     public static int GetDoTweenID() { return g_DoTweenID++; }
 
 
+    public static Transform NewOtherObjAddParentShow(this Transform ParentTransform, CGGameSceneData.EOtherObj OtherObjtype)
+    {
+        CGGameSceneData lTempGGameSceneData = CGGameSceneData.SharedInstance;
+        GameObject lTempOtherObj = GameObject.Instantiate(lTempGGameSceneData.m_AllOtherObj[(int)OtherObjtype], ParentTransform);
+        lTempOtherObj.transform.position = ParentTransform.position;
+
+        return lTempOtherObj.transform;
+    }
+
     public static Transform NewFxAddParentShow(this Transform ParentTransform, CGGameSceneData.EAllFXType Fxtype, Vector3 offsetPos)
     {
         CGGameSceneData lTempGGameSceneData = CGGameSceneData.SharedInstance;
