@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3871066746950533250}
-  m_LocalRotation: {x: -0.011690575, y: 0.94675803, z: -0.034602262, w: -0.3198676}
+  m_LocalRotation: {x: -0.060490415, y: 0.93949914, z: -0.23611948, w: -0.2406862}
   m_LocalPosition: {x: 0, y: 0, z: 2.9902964}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Path: {fileID: 5536622574373427893}
   m_UpdateMethod: 0
   m_PositionUnits: 1
-  m_Speed: 1
+  m_Speed: 20
   m_Position: 0
 --- !u!1 &4493527303302990928
 GameObject:
@@ -111,8 +111,8 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0.5
-  m_VerticalDamping: 0.5
+  m_HorizontalDamping: 0.1
+  m_VerticalDamping: 0.1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0
@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 20
     OrthographicSize: 5
-    NearClipPlane: 1
+    NearClipPlane: 0.1
     FarClipPlane: 100
     Dutch: 0
     ModeOverride: 0
@@ -268,13 +268,11 @@ MonoBehaviour:
   m_Waypoints:
   - position: {x: 0, y: 0, z: 2.9902964}
     roll: 0
-  - position: {x: -1.330704, y: -0.037305355, z: 1.032805}
+  - position: {x: -1.330704, y: -0.7939048, z: 1.032805}
     roll: 0
-  - position: {x: -1.5253537, y: 0.53159094, z: -0.5499463}
+  - position: {x: -2.2046626, y: 0.53159094, z: -0.08979148}
     roll: 0
-  - position: {x: -0.32206202, y: 1.2189813, z: -0.95947456}
-    roll: 0
-  - position: {x: 0.76272845, y: 1.5591159, z: 0.63203025}
+  - position: {x: -0.32206202, y: 1.0066566, z: -3.215647}
     roll: 0
 --- !u!1 &8383139649937474301
 GameObject:

@@ -37,7 +37,7 @@ public class CDragStraightLineStatePlayer : CPlayerStateBase
         //Debug.Log($"m_MyGameManager.CurVcamObjAnima.rotation.x = {m_MyGameManager.CurVcamObjAnima.rotation.x}");
         //Debug.Log($"m_MyGameManager.CurVcamObjAnima.rotation.y = {m_MyGameManager.CurVcamObjAnima.rotation.y}");
         //Debug.Log($"m_MyGameManager.CurVcamObjAnima.rotation.z = {m_MyGameManager.CurVcamObjAnima.rotation.z}");
-
+        m_MyGameManager.OpenPhysics = false;
     }
 
     protected override void updataState()
@@ -48,6 +48,7 @@ public class CDragStraightLineStatePlayer : CPlayerStateBase
     protected override void OutState()
     {
         StaticGlobalDel.ObjListChangLayer(m_MyPlayerMemoryShare.m_TargetListRenderObj, StaticGlobalDel.ELayerIndex.eDef);
+        m_MyGameManager.OpenPhysics = true;
     }
 
     public override void MouseDrag()
@@ -62,16 +63,45 @@ public class CDragStraightLineStatePlayer : CPlayerStateBase
 
         m_MyPlayerMemoryShare.m_MyTransform.rotation = Camera.main.transform.rotation;
         m_MyPlayerMemoryShare.m_MyTransform.position = Camera.main.transform.position + (Camera.main.transform.forward * 1.5f);
+
+        //Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
+        //Debug.DrawRay(ray.origin, ray.direction * 100.0f, Color.red);
     }
 
 
     public override void MouseUp()
     {
+        m_MyGameManager.GetTimeObj(0).SetActive(false);
+
+        Vector3 lTempHitPos = Vector3.zero;
+        CNPCBase lTempTargetNPC = null; 
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f));
+
+        if (Physics.Raycast(ray, out RaycastHit info))
+        {
+            lTempTargetNPC = info.collider.gameObject.GetComponentInParent<CNPCBase>();
+            lTempHitPos = info.point;
+            //Debug.Log($"lTempTargetNPC = {lTempTargetNPC != null}");
+
+            //if (lTempTargetNPC != null)
+            //    Debug.Log($"  lTempTargetNPC.MyActorType(); = {  lTempTargetNPC.MyActorType()}");
+
+        }
+
+
+
+        //RaycastHit[] lTempRaycastHit = Physics.RaycastAll(ray, 100.0f, StaticGlobalDel.g_FloorMask);
+        m_MyPlayerMemoryShare.m_MyPlayer.SetChangState(EMovableState.eWait, 1);
+
         Transform lTempBullet = StaticGlobalDel.NewFxAddParentShow(m_MyGameManager.gameObject.transform, CGGameSceneData.EAllFXType.eBullet);
         lTempBullet.position = m_MyPlayerMemoryShare.m_MyTransform.position;
         lTempBullet.forward = m_MyPlayerMemoryShare.m_MyTransform.forward;
 
-        m_MyPlayerMemoryShare.m_MyPlayer.SetChangState(EMovableState.eWait, 1);
+        CBulletStage005 lTempCBulletStage005 = lTempBullet.GetComponentInChildren<CBulletStage005>();
+        lTempCBulletStage005.MyTargetNpc = lTempTargetNPC;
+        lTempCBulletStage005.HitPos = lTempHitPos;
+
+        
     }
 
 }

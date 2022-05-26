@@ -2399,11 +2399,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 877568185}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b1852f2318ab0e4593998b83f61b886, type: 3}
+  m_Script: {fileID: 11500000, guid: 69e272d5aee028c468711367457cb1fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_MyAllCollider: []
-  m_AllObj: {fileID: 1084358442}
+  m_AllObj: {fileID: 0}
 --- !u!1001 &887008129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3641,7 +3641,7 @@ MonoBehaviour:
   - {fileID: 1020438065}
   PrefabGameSceneData: {fileID: 1509596396949040922, guid: 05e7b6e00344118419787de0fc01772d,
     type: 3}
-  m_BG: {fileID: 767382192}
+  m_BG: {fileID: 0}
 --- !u!4 &1215124335
 Transform:
   m_ObjectHideFlags: 0
@@ -4587,11 +4587,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1498561699}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b1852f2318ab0e4593998b83f61b886, type: 3}
+  m_Script: {fileID: 11500000, guid: 69e272d5aee028c468711367457cb1fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_MyAllCollider: []
-  m_AllObj: {fileID: 966058026}
+  m_AllObj: {fileID: 0}
 --- !u!1 &1531270535
 GameObject:
   m_ObjectHideFlags: 0
@@ -5668,11 +5668,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1905192168}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b1852f2318ab0e4593998b83f61b886, type: 3}
+  m_Script: {fileID: 11500000, guid: b3b9122bba14a03488561c9f062f95c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_MyAllCollider: []
-  m_AllObj: {fileID: 148792505}
+  m_AllObj: {fileID: 0}
 --- !u!1 &1931734308
 GameObject:
   m_ObjectHideFlags: 3
