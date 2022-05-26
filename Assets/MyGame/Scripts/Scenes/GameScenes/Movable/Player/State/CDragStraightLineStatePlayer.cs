@@ -71,6 +71,8 @@ public class CDragStraightLineStatePlayer : CPlayerStateBase
 
     public override void MouseUp()
     {
+        m_MyPlayerMemoryShare.m_AllObj.gameObject.SetActive(false);
+
         m_MyGameManager.GetTimeObj(0).SetActive(false);
 
         Vector3 lTempHitPos = Vector3.zero;
