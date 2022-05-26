@@ -1880,6 +1880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_WinObjAnima: {fileID: 0}
   m_OverObjAnima: {fileID: 0}
+  m_CurVcamObjAnima: {fileID: 0}
   PrefabGameSceneData: {fileID: 1509596396949040922, guid: 05e7b6e00344118419787de0fc01772d,
     type: 3}
   m_BG: {fileID: 1800822775}

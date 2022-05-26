@@ -33,10 +33,13 @@ public static class StaticGlobalDel
 
     public enum ELayerIndex
     {
+        eDef                    = 0,
         eWater                  = 4,
         eUI                     = 5,
         eFloor                  = 6,
         ePlayer                 = 7,
+        eNPC                    = 8,
+        eTarget                 = 9,
         eRenderFlashModelShow   = 30,
         eMax
     }
@@ -74,6 +77,8 @@ public static class StaticGlobalDel
     public const int g_WaterMask                    = 1 << (int)ELayerIndex.eWater;
     public const int g_FloorMask                    = 1 << (int)ELayerIndex.eFloor;
     public const int g_PlayerMask                   = 1 << (int)ELayerIndex.ePlayer;
+    public const int g_NPCMask                      = 1 << (int)ELayerIndex.eNPC;
+    public const int g_TargetMask                   = 1 << (int)ELayerIndex.eTarget;
     public const int g_eRenderFlashModelShowMask    = 1 << (int)ELayerIndex.eRenderFlashModelShow;
 
     public const int g_MaxFever             = 100;
@@ -94,6 +99,15 @@ public static class StaticGlobalDel
     static int g_DoTweenID = 1;
     public static int GetDoTweenID() { return g_DoTweenID++; }
 
+
+    public static Transform NewOtherObjAddParentShow(this Transform ParentTransform, CGGameSceneData.EOtherObj OtherObjtype)
+    {
+        CGGameSceneData lTempGGameSceneData = CGGameSceneData.SharedInstance;
+        GameObject lTempOtherObj = GameObject.Instantiate(lTempGGameSceneData.m_AllOtherObj[(int)OtherObjtype], ParentTransform);
+        lTempOtherObj.transform.position = ParentTransform.position;
+
+        return lTempOtherObj.transform;
+    }
 
     public static Transform NewFxAddParentShow(this Transform ParentTransform, CGGameSceneData.EAllFXType Fxtype, Vector3 offsetPos)
     {

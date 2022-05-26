@@ -5,7 +5,7 @@ using Cinemachine;
 using DG.Tweening;
 using UniRx;
 using MYgame.Scripts.Scenes.GameScenes.Data;
-
+using UnityEngine.SceneManagement;
 
 //interface IProduct
 //{
@@ -112,10 +112,19 @@ public class CPlayer : CMovableBase
 
     protected override void AddInitState()
     {
-        m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStatePlayer(this));
+        if (SceneManager.GetActiveScene().buildIndex == 5)
+            m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitCamStatePlayer(this));
+        else
+            m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStatePlayer(this));
+
+
+        
         m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CReadyPlayStatePlayer(this));
 
-        m_AllState[(int)StaticGlobalDel.EMovableState.eDrag].AllThisState.Add(new CDragStatePlayer(this));
+        if (SceneManager.GetActiveScene().buildIndex == 5)
+            m_AllState[(int)StaticGlobalDel.EMovableState.eDrag].AllThisState.Add(new CDragStraightLineStatePlayer(this));
+        else
+           m_AllState[(int)StaticGlobalDel.EMovableState.eDrag].AllThisState.Add(new CDragStatePlayer(this));
 
 
         if (m_MyGameManager.CurStageData.JumpStatePlayerType == EJumpStatePlayerType.eNormal)
@@ -213,21 +222,21 @@ public class CPlayer : CMovableBase
                 return;
         }
 #endif
-
         if ((int)m_MyGameManager.CurState < (int)CGameManager.EState.ePlay)
             return;
+
 
         //if (Input.GetMouseButtonDown(0))
         //{
         //    PlayerMouseDown();
         //}
-
         if (Input.GetMouseButtonUp(0))
         {
             PlayerMouseUp();
         }
         else if (Input.GetMouseButton(0))
         {
+            
             PlayerMouseDrag();
         }
     }
@@ -237,39 +246,45 @@ public class CPlayer : CMovableBase
     //    DataState lTempDataState = m_AllState[(int)CurState];
     //    if (m_CurState != CMovableStatePototype.EMovableState.eNull && lTempDataState != null && lTempDataState.AllThisState[lTempDataState.index] != null)
     //        lTempDataState.AllThisState[lTempDataState.index].MouseDown();
-
-    //    if (!m_MyPlayerMemoryShare.m_bDown)
-    //    {
-    //        m_MyPlayerMemoryShare.m_bDown = true;
-    //        m_MyPlayerMemoryShare.m_OldMouseDownPos = Input.mousePosition;
-    //        m_MyPlayerMemoryShare.m_DownMouseDownPos = Input.mousePosition;
-    //        m_MyPlayerMemoryShare.m_DownTime = Time.realtimeSinceStartup;
-    //    }
     //}
 
-    public override void OnMouseDown()
+    //public override void OnMouseDown()
+    //{
+    //    //DataState lTempDataState = m_AllState[(int)CurState];
+    //    //if (m_CurState != CMovableStatePototype.EMovableState.eNull && lTempDataState != null && lTempDataState.AllThisState[lTempDataState.index] != null)
+    //    //    lTempDataState.AllThisState[lTempDataState.index].MouseDown();
+
+    //    base.OnMouseDown();
+
+    //    if (!m_MyPlayerMemoryShare.m_bDown)
+    //        SaveMouseDown();
+    //}
+
+    public bool RayInputTest()
     {
-        //DataState lTempDataState = m_AllState[(int)CurState];
-        //if (m_CurState != CMovableStatePototype.EMovableState.eNull && lTempDataState != null && lTempDataState.AllThisState[lTempDataState.index] != null)
-        //    lTempDataState.AllThisState[lTempDataState.index].MouseDown();
-
-        base.OnMouseDown();
-
-        if (!m_MyPlayerMemoryShare.m_bDown)
+        if (Input.GetMouseButtonDown(0))
         {
-            m_MyPlayerMemoryShare.m_bDown = true;
-            m_MyPlayerMemoryShare.m_OldMouseDownPos = Input.mousePosition;
-            m_MyPlayerMemoryShare.m_DownMouseDownPos = Input.mousePosition;
-            m_MyPlayerMemoryShare.m_DownTime = Time.realtimeSinceStartup;
+            bool ltemp = Physics.Raycast(Camera.main.ViewportPointToRay(new Vector3(Input.mousePosition.x /Screen.width, Input.mousePosition.y / Screen.height)), 
+                out RaycastHit m_RaycastHitInfo, 100.0f, StaticGlobalDel.g_PlayerMask | StaticGlobalDel.g_eRenderFlashModelShowMask);
+
+            return ltemp;
         }
 
+        return false;
+    }
+
+    public void SaveMouseDown()
+    {
+        m_MyPlayerMemoryShare.m_bDown = true;
+        m_MyPlayerMemoryShare.m_OldMouseDownPos = Input.mousePosition;
+        m_MyPlayerMemoryShare.m_DownMouseDownPos = Input.mousePosition;
+        m_MyPlayerMemoryShare.m_DownTime = Time.realtimeSinceStartup;
     }
 
     public void PlayerMouseDrag()
     {
         //if (!m_MyPlayerMemoryShare.m_bDown)
         //    return;
-
         m_MyPlayerMemoryShare.m_CurMouseDownPos = Input.mousePosition;
 
         DataState lTempDataState = m_AllState[(int)CurState];

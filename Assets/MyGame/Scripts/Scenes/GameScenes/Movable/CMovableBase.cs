@@ -52,7 +52,7 @@ public abstract class CMovableBase : CGameObjBas
     {
         eActor              = 0,
         ePlayer             = 1,
-        eNpc                = 2,
+        eBullet             = 2,
         eMax
     };
 

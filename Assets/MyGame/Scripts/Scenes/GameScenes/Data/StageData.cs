@@ -37,6 +37,7 @@ namespace MYgame.Scripts.Scenes.GameScenes.Data
         [SerializeField]
         private float _RotationAngle = 0.0f;
 
+
         public bool WinMoveWinPos => _WinMoveWinPos;
         public Vector3 Gravity => _Gravity;
         public Vector3 AddForce => _AddForce;

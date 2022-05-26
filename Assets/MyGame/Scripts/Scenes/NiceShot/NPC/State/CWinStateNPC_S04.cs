@@ -16,7 +16,7 @@ public class CWinStateNPC_S04 : CNPCS04StateBase
 
         DataAddBuffInfo lTempDataAddBuffInfo = new DataAddBuffInfo();
         lTempDataAddBuffInfo.m_ListDataIndex.Add((int)CGGameSceneData.EAllFXType.eHappy);
-        m_MyNPCMemoryShare.m_MyNPCStage004.AddBuff(CMovableBuffPototype.EMovableBuff.eExpression, lTempDataAddBuffInfo);
+        m_MyNPCMemoryShare.m_MyNPCBase.AddBuff(CMovableBuffPototype.EMovableBuff.eExpression, lTempDataAddBuffInfo);
 
 
     }

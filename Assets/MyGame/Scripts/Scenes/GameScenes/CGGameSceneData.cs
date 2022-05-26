@@ -48,15 +48,13 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
     {
         eScared = 0,
         eHappy  = 1,
+        eBullet = 2,
         eMax,
     };
 
     public enum EOtherObj
     {
-        eScoreTextObj       = 0,
-        ePlayerObj          = 1,
-        eTrailerObj         = 2,
-        eTimeShow           = 3,
+        eBulletCam = 0,
         eMax,
     };
 

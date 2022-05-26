@@ -59,7 +59,7 @@ public class CDragStatePlayer : CPlayerStateBase
         Vector3 lTempV3 = m_MyPlayerMemoryShare.m_CurMouseDownPos - m_MyPlayerMemoryShare.m_DownMouseDownPos;
         //Debug.Log($"======================================");
         //Debug.Log($"lTempV3 = {lTempV3}");
-        
+
 
         lTempV3 =   (m_BuffCameraForward    * (lTempV3.y / Screen.height)   * m_MyPlayerMemoryShare.m_CurStageData.AddForce.z) +
                     (m_BuffCameraRight      * (lTempV3.x / Screen.width)    * m_MyPlayerMemoryShare.m_CurStageData.AddForce.x) +
@@ -214,10 +214,5 @@ public class CDragStatePlayer : CPlayerStateBase
         }
         else
             ChangState(EMovableState.eJump);
-    }
-
-    public void aaaqqq(CDataJumpBounce vvv)
-    {
-
     }
 }

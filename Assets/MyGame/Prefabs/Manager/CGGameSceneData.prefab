@@ -47,7 +47,9 @@ MonoBehaviour:
   m_AllFX:
   - {fileID: 6543029137001567627, guid: 2dbe4c3f134d1394db37a1a471ebc2ac, type: 3}
   - {fileID: 6543029137001567627, guid: 5935e68465f1bfd40aa0e60b33562b96, type: 3}
-  m_AllOtherObj: []
+  - {fileID: 7134121928904763792, guid: 1d70901139c1e364cb39034557a0b925, type: 3}
+  m_AllOtherObj:
+  - {fileID: 8383139649937474301, guid: c9bf05cbf93c9464f9e29c580e7ecb7a, type: 3}
   m_UIObj:
   - {fileID: 4810386094064599752, guid: 3bdf34b18e2ed1b43a47b878581bb64a, type: 3}
   m_AllExpressionSprite:
@@ -58,6 +60,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8c5216833d7b76f439d37b4c42c7d98d, type: 2}
   - {fileID: 11400000, guid: ac2a622ddecd6c34bb176658ccd3220e, type: 2}
   - {fileID: 11400000, guid: 0c03634de5e36194182064d080e3a76c, type: 2}
+  - {fileID: 11400000, guid: 0c75f47c95b2cfa46934c07a98290e8e, type: 2}
   m_PrefabEventSystem: {fileID: 1792202897340608778, guid: e66c430660b85334ca70bd0fec000779,
     type: 3}
   m_SaveManager: {fileID: 1842041293832986182, guid: c70ec8a811342bd48815a2f11379fcda,

@@ -14,11 +14,18 @@ public class CWaitStatePlayer : CPlayerStateBase
 
     protected override void InState()
     {
+
         StaticGlobalDel.ObjListChangLayer(m_MyPlayerMemoryShare.m_PlayerListRenderObj, StaticGlobalDel.ELayerIndex.eRenderFlashModelShow);
     }
 
     protected override void updataState()
     {
+        if (m_MyPlayerMemoryShare.m_MyPlayer.RayInputTest())
+        {
+            m_MyPlayerMemoryShare.m_MyPlayer.SaveMouseDown();
+            ChangState(EMovableState.eDrag);
+        }
+
         base.updataState();
     }
 
@@ -27,11 +34,11 @@ public class CWaitStatePlayer : CPlayerStateBase
         StaticGlobalDel.ObjListChangLayer(m_MyPlayerMemoryShare.m_PlayerListRenderObj, StaticGlobalDel.ELayerIndex.ePlayer);
     }
 
-    public override void MouseDown()
-    {
-        ChangState(EMovableState.eDrag);
+    //public override void MouseDown()
+    //{
+    //    ChangState(EMovableState.eDrag);
         
-    }
+    //}
 
     //public override void MouseDrag()
     //{
