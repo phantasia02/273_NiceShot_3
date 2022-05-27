@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 023a79eaf1d19d04f8b961c94776e064, type: 3}
-  m_Name: Stage_006
+  m_Script: {fileID: 11500000, guid: 756e8a9d6e48630409bede4093866940, type: 3}
+  m_Name: Projectile_Bullet
   m_EditorClassIdentifier: 
-  _WinMoveWinPos: 0
-  _Gravity: {x: 0, y: -9.81, z: 0}
-  _AddForce: {x: 160, y: 200, z: 0}
-  _PredictionTime: 1.5
-  _PredictionBallSize: 0.1
-  _JumpStatePlayerType: 1
-  _RotationAngle: 0
+  _ProjectileType: 0

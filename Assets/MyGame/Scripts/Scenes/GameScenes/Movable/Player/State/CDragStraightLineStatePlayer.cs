@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CDragStraightLineStatePlayer : CPlayerStateBase
 {
@@ -73,7 +74,9 @@ public class CDragStraightLineStatePlayer : CPlayerStateBase
     {
         m_MyPlayerMemoryShare.m_AllObj.gameObject.SetActive(false);
 
-        m_MyGameManager.GetTimeObj(0).SetActive(false);
+        GameObject lTempGameObject = m_MyGameManager.GetTimeObj(0);
+        if (lTempGameObject != null)
+            lTempGameObject.SetActive(false);
 
         Vector3 lTempHitPos = Vector3.zero;
         CNPCBase lTempTargetNPC = null; 
@@ -89,13 +92,15 @@ public class CDragStraightLineStatePlayer : CPlayerStateBase
             //    Debug.Log($"  lTempTargetNPC.MyActorType(); = {  lTempTargetNPC.MyActorType()}");
 
         }
-
-
-
-        //RaycastHit[] lTempRaycastHit = Physics.RaycastAll(ray, 100.0f, StaticGlobalDel.g_FloorMask);
         m_MyPlayerMemoryShare.m_MyPlayer.SetChangState(EMovableState.eWait, 1);
 
-        Transform lTempBullet = StaticGlobalDel.NewFxAddParentShow(m_MyGameManager.gameObject.transform, CGGameSceneData.EAllFXType.eBullet);
+        Transform lTempBullet = null;
+
+        if (SceneManager.GetActiveScene().buildIndex == 5 )
+            lTempBullet = StaticGlobalDel.NewFxAddParentShow(m_MyGameManager.gameObject.transform, CGGameSceneData.EAllFXType.eBullet);
+        else if (SceneManager.GetActiveScene().buildIndex == 6)
+            lTempBullet = StaticGlobalDel.NewFxAddParentShow(m_MyGameManager.gameObject.transform, CGGameSceneData.EAllFXType.eRubberBand);
+
         lTempBullet.position = m_MyPlayerMemoryShare.m_MyTransform.position;
         lTempBullet.forward = m_MyPlayerMemoryShare.m_MyTransform.forward;
 
