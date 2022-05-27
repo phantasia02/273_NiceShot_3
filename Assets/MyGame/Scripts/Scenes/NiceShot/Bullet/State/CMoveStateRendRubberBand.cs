@@ -22,7 +22,13 @@ public class CMoveStateRendRubberBand : CBulletS05StateBase
         m_CamObj.transform.rotation = m_MyBulletMemoryShare.m_MyTransform.rotation;
 
 
-        Tween lTempTween = m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.transform.DORotate(new Vector3(0.0f, 0.0f, -360.0f), 1f, RotateMode.LocalAxisAdd);
+        //Tween lTempTween = m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.transform.DORotate(new Vector3(0.0f, 0.0f, -360.0f), 1f, RotateMode.LocalAxisAdd);
+        Tween lTempTween = m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.transform.DOShakeRotation(1.0f, 10, 10, 90, false);
+        lTempTween.SetLoops(-1);
+        lTempTween.SetEase(Ease.Linear);
+        lTempTween.SetId(m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.transform);
+
+        lTempTween = m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.transform.DOShakeScale(1.0f, 0.1f, 10, 90, false);
         lTempTween.SetLoops(-1);
         lTempTween.SetEase(Ease.Linear);
         lTempTween.SetId(m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.transform);
@@ -53,13 +59,14 @@ public class CMoveStateRendRubberBand : CBulletS05StateBase
     protected override void OutState()
     {
         DOTween.Kill(m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.transform);
-        m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.SetActive(false);
+       // m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.SetActive(false);
         Time.timeScale = 1.0f;
     }
 
     public override void OnTriggerEnter(Collider other)
     {
-        ChangState(CMovableStatePototype.EMovableState.eWait);
+        m_CamObj.transform.SetParent(m_MyGameManager.transform);
+        ChangState(CMovableStatePototype.EMovableState.eDeath);
 
         CNPCBase lTempNPCBase = other.gameObject.GetComponentInParent<CNPCBase>();
         if (lTempNPCBase != null)

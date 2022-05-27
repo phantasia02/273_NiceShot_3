@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MyAllCollider:
   - {fileID: 7933572210255793134}
-  m_ShowRenderer: {fileID: 8076097579667366354}
+  m_ShowRenderer: {fileID: 7933572210255793041}
   m_ProjectileData: {fileID: 11400000, guid: 4213b01f986e88147901e0b304b54071, type: 2}
 --- !u!54 &-3420454654186527776
 Rigidbody:
@@ -202,6 +202,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2297c6c238926c4a885880f4aa15883, type: 3}
+--- !u!1 &7933572210255793041 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8446368049131323385, guid: f2297c6c238926c4a885880f4aa15883,
+    type: 3}
+  m_PrefabInstance: {fileID: 1958559071940080744}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7933572210255793131 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8446368049131323267, guid: f2297c6c238926c4a885880f4aa15883,

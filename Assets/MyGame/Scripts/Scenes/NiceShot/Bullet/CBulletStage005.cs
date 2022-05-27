@@ -46,6 +46,7 @@ public class CBulletStage005 : CMovableBase
             m_AllState[(int)StaticGlobalDel.EMovableState.eMove].AllThisState.Add(new CMoveStateRendRubberBand(this));
 
         m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStateBase(this));
+        m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStateProjectile(this));
 
         // ================= Buff ===========================
 
