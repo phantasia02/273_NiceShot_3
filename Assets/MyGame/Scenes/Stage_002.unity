@@ -488,6 +488,7 @@ MonoBehaviour:
   m_WinObjAnima: {fileID: 0}
   m_OverObjAnima: {fileID: 0}
   m_CurVcamObjAnima: {fileID: 0}
+  m_TimeGameObject: []
   PrefabGameSceneData: {fileID: 1509596396949040922, guid: 05e7b6e00344118419787de0fc01772d,
     type: 3}
   m_BG: {fileID: 2110021385}
@@ -3121,7 +3122,7 @@ GameObject:
   - component: {fileID: 2033091477}
   - component: {fileID: 2033091476}
   m_Layer: 0
-  m_Name: Result UI
+  m_Name: Result Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

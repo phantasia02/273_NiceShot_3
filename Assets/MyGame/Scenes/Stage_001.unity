@@ -1561,12 +1561,17 @@ PrefabInstance:
     - target: {fileID: 4770183136297602064, guid: 1cacd37db68b03b4db52e458d462de33,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8469761443107246567, guid: 1cacd37db68b03b4db52e458d462de33,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884892369631656854, guid: 1cacd37db68b03b4db52e458d462de33,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cacd37db68b03b4db52e458d462de33, type: 3}
@@ -1881,6 +1886,7 @@ MonoBehaviour:
   m_WinObjAnima: {fileID: 0}
   m_OverObjAnima: {fileID: 0}
   m_CurVcamObjAnima: {fileID: 0}
+  m_TimeGameObject: []
   PrefabGameSceneData: {fileID: 1509596396949040922, guid: 05e7b6e00344118419787de0fc01772d,
     type: 3}
   m_BG: {fileID: 1800822775}

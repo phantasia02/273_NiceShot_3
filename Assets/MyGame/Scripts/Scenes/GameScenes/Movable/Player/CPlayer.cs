@@ -324,6 +324,7 @@ public class CPlayer : CMovableBase
 
     public void PlayEnd()
     {
+        SetChangState(CMovableStatePototype.EMovableState.eJump);
         ObserverPlayEndEvent().OnNext(UniRx.Unit.Default);
     }
 
