@@ -73,7 +73,6 @@ public class CMoveStateRendRubberBand : CBulletS05StateBase
 
         m_CamObj.transform.SetParent(m_MyGameManager.transform);
         ChangState(CMovableStatePototype.EMovableState.eDeath);
-        Debug.Log("OnTriggerEnter111111111");
 
         CNPCBase lTempNPCBase = other.gameObject.GetComponentInParent<CNPCBase>();
         if (lTempNPCBase == null)
