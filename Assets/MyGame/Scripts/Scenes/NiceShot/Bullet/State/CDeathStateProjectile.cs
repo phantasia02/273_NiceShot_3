@@ -27,7 +27,7 @@ public class CDeathStateProjectile : CBulletS05StateBase
                 Rigidbody rb = hit.GetComponentInParent<Rigidbody>();
 
                 if (rb != null)
-                    rb.AddExplosionForce(10.0f, lTempExplosionpos, 20.0f, 20.0F);
+                    rb.AddExplosionForce(10.0f, lTempExplosionpos, 20.0f, 200.0F);
             }
         }
 
