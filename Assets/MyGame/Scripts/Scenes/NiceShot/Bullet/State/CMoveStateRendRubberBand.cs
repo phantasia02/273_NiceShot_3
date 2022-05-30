@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
+using UniRx;
 
 public class CMoveStateRendRubberBand : CBulletS05StateBase
 {
@@ -39,19 +41,19 @@ public class CMoveStateRendRubberBand : CBulletS05StateBase
     {
         m_MyBulletMemoryShare.m_MyTransform.Translate(m_MyBulletMemoryShare.m_MyTransform.forward * Time.deltaTime * m_MyBulletMemoryShare.m_TotleSpeed.Value, Space.World);
 
-        if (!m_LongHasHit)
-        {
-            if (Physics.Raycast(new Ray(m_MyBulletMemoryShare.m_MyTransform.position, m_MyBulletMemoryShare.m_MyTransform.forward), out RaycastHit TempLongHitInfo, 1.5f))
-            {
-                m_LongHasHit = true;
-                CNPCBase lTempNPCBase = TempLongHitInfo.collider.gameObject.GetComponentInParent<CNPCBase>();
-                if (lTempNPCBase != null)
-                {
-                    Time.timeScale = 0.1f;
-                    m_CamObj.transform.SetParent(m_MyGameManager.transform);
-                }
-            }
-        }
+        //if (!m_LongHasHit)
+        //{
+        //    if (Physics.Raycast(new Ray(m_MyBulletMemoryShare.m_MyTransform.position, m_MyBulletMemoryShare.m_MyTransform.forward), out RaycastHit TempLongHitInfo, 1.5f))
+        //    {
+        //        m_LongHasHit = true;
+        //        CNPCBase lTempNPCBase = TempLongHitInfo.collider.gameObject.GetComponentInParent<CNPCBase>();
+        //        if (lTempNPCBase != null)
+        //        {
+        //            Time.timeScale = 0.1f;
+        //            m_CamObj.transform.SetParent(m_MyGameManager.transform);
+        //        }
+        //    }
+        //}
 
         base.updataState();
     }
@@ -65,13 +67,16 @@ public class CMoveStateRendRubberBand : CBulletS05StateBase
 
     public override void OnTriggerEnter(Collider other)
     {
+
+        if (m_MyBulletMemoryShare.m_MyMovable.ChangState != EMovableState.eMax)
+            return;
+
         m_CamObj.transform.SetParent(m_MyGameManager.transform);
         ChangState(CMovableStatePototype.EMovableState.eDeath);
+        Debug.Log("OnTriggerEnter111111111");
 
         CNPCBase lTempNPCBase = other.gameObject.GetComponentInParent<CNPCBase>();
-        if (lTempNPCBase != null)
-            lTempNPCBase.SetChangState(EMovableState.eDeath);
-        else
+        if (lTempNPCBase == null)
             m_MyGameManager.SetState(CGameManager.EState.eGameOver);
     }
 }

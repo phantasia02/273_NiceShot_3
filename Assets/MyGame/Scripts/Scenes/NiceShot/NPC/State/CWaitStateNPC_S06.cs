@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CWaitStateNPC_S06 : CNPCS04StateBase
+public class CWaitStateNPC_S06 : CNPCTargetStateBase006
 {
     public override EMovableState StateType() { return EMovableState.eWait; }
     float m_RandomTime = 1.0f;
 
     public CWaitStateNPC_S06(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
-        m_RandomTime = Random.Range(2.5f, 3.5f);
+        m_RandomTime = Random.Range(2.5f, 4.5f);
     }
 
     protected override void InState()
@@ -28,4 +28,7 @@ public class CWaitStateNPC_S06 : CNPCS04StateBase
     protected override void OutState()
     {
     }
+
+
+
 }

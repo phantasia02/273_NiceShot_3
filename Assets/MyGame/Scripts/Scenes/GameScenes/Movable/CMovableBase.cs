@@ -531,7 +531,6 @@ public abstract class CMovableBase : CGameObjBas
             UpdateCurSpeed();
     }
 
-
     public void AllColliderEnabled(bool enabled)
     {
         if (m_MyMemoryShare.m_MyAllCollider != null)
@@ -542,6 +541,24 @@ public abstract class CMovableBase : CGameObjBas
                     item.enabled = enabled;
             }
         }
+    }
+
+    public void UseGravityRigidbody(bool useGravity)
+    {
+        if (m_MyMemoryShare.m_MyRigidbody == null)
+            return;
+
+        m_MyMemoryShare.m_MyRigidbody.useGravity = useGravity;
+        m_MyMemoryShare.m_MyRigidbody.isKinematic = !useGravity;
+    }
+
+    public void UseTirgger(bool setuseTirgger)
+    {
+        if (m_MyMemoryShare.m_MyAllCollider == null)
+            return;
+
+        foreach (var item in m_MyMemoryShare.m_MyAllCollider)
+            item.isTrigger = setuseTirgger;
     }
 
     // ===================== UniRx ======================

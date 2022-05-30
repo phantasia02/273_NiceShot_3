@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CJumpDownStateNPC_S06 : CNPCS04StateBase
+public class CJumpDownStateNPC_S06 : CNPCTargetStateBase006
 {
     public override EMovableState StateType() { return EMovableState.eJump; }
 
@@ -46,4 +46,6 @@ public class CJumpDownStateNPC_S06 : CNPCS04StateBase
         m_MyNPCMemoryShare.m_MyTransform.position = m_MyMovable.TargetPos.position;
         m_MyNPCMemoryShare.m_MyTransform.rotation = m_MyMovable.TargetPos.rotation;
     }
+
+
 }

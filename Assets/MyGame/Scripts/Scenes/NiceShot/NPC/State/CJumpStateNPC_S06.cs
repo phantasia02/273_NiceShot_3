@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CJumpStateNPC_S06 : CNPCS04StateBase
+public class CJumpStateNPC_S06 : CNPCTargetStateBase006
 {
     public override EMovableState StateType() { return EMovableState.eJump; }
 
@@ -46,4 +46,6 @@ public class CJumpStateNPC_S06 : CNPCS04StateBase
     protected override void OutState()
     {
     }
+
+
 }

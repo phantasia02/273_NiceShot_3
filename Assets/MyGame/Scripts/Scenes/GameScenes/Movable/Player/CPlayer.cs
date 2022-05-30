@@ -6,6 +6,7 @@ using DG.Tweening;
 using UniRx;
 using MYgame.Scripts.Scenes.GameScenes.Data;
 using UnityEngine.SceneManagement;
+using System;
 
 //interface IProduct
 //{
@@ -186,6 +187,8 @@ public class CPlayer : CMovableBase
 #if DEBUGPC
 
 #endif
+
+
 
     }
 
