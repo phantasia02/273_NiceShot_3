@@ -47,10 +47,7 @@ public class CGameManager : MonoBehaviour
     public GameObject GetTimeObj(int index)
     {
         if (m_TimeGameObject.Length <= index)
-        {
-            Debug.LogError("GetTimeObj over index");
             return null;
-        }
 
         return m_TimeGameObject[index];
     }

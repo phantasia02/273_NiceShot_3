@@ -124,6 +124,15 @@ public abstract class CMovableStatePototype : CExternalOBJBase
         m_MyMemoryShare.m_MyRigidbody.isKinematic = !useGravity;
     }
 
+    public void UseTirgger(bool setuseTirgger)
+    {
+        if (m_MyMemoryShare.m_MyAllCollider == null)
+            return;
+
+        foreach (var item in m_MyMemoryShare.m_MyAllCollider)
+            item.isTrigger = setuseTirgger;
+    }
+
     public bool FloatingToFloorChack()
     {
         return false;

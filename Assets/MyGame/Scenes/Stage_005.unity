@@ -4294,7 +4294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 910795586}
   m_Layer: 0
-  m_Name: ----------- BG ----------- (1)
+  m_Name: ----------- BG -----------
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4861,7 +4861,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!320 &1020438067
 PlayableDirector:
@@ -5949,7 +5949,7 @@ Transform:
   - {fileID: 1498561700}
   - {fileID: 1603370678}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1222580189
 PrefabInstance:
@@ -8300,7 +8300,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1696287759
 GameObject:

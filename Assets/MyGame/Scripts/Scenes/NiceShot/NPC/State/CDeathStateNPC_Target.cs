@@ -13,16 +13,16 @@ public class CDeathStateNPC_Target : CNPCS04StateBase
 
     protected override void InState()
     {
-
         m_MyNPCMemoryShare.m_MyActor.EnabledRagdoll(true);
-
-
     }
 
     protected override void updataState()
     {
         if (MomentinTime(1.0f))
-            m_MyGameManager.SetState(CGameManager.EState.eWinUI);
+        {
+            if (m_MyGameManager.CurState != CGameManager.EState.eGameOver)
+                m_MyGameManager.SetState(CGameManager.EState.eWinUI);
+        }
 
         base.updataState();
     }

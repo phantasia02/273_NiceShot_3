@@ -6,6 +6,7 @@ using DG.Tweening;
 using UniRx;
 using MYgame.Scripts.Scenes.GameScenes.Data;
 using UnityEngine.SceneManagement;
+using System;
 
 //interface IProduct
 //{
@@ -112,7 +113,9 @@ public class CPlayer : CMovableBase
 
     protected override void AddInitState()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 5)
+        int lTempCurbuildIndex = SceneManager.GetActiveScene().buildIndex;
+
+        if (lTempCurbuildIndex == 5 || lTempCurbuildIndex == 6)
             m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitCamStatePlayer(this));
         else
             m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStatePlayer(this));
@@ -121,7 +124,7 @@ public class CPlayer : CMovableBase
         
         m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CReadyPlayStatePlayer(this));
 
-        if (SceneManager.GetActiveScene().buildIndex == 5)
+        if (lTempCurbuildIndex == 5 || lTempCurbuildIndex == 6)
             m_AllState[(int)StaticGlobalDel.EMovableState.eDrag].AllThisState.Add(new CDragStraightLineStatePlayer(this));
         else
            m_AllState[(int)StaticGlobalDel.EMovableState.eDrag].AllThisState.Add(new CDragStatePlayer(this));
@@ -184,6 +187,8 @@ public class CPlayer : CMovableBase
 #if DEBUGPC
 
 #endif
+
+
 
     }
 

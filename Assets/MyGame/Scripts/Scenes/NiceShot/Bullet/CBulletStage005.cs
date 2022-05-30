@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MYgame.Scripts.Scenes.GameScenes.Data;
 
 public class CBulletStage005MemoryShare : CMemoryShareBase
 {
@@ -19,6 +20,8 @@ public class CBulletStage005 : CMovableBase
     [SerializeField] protected GameObject m_ShowRenderer = null;
     public GameObject ShowRenderer => m_ShowRenderer;
 
+    [SerializeField] protected CProjectileData m_ProjectileData = null;
+
     protected Vector3 m_HitPos = Vector3.zero;
     public Vector3 HitPos
     {
@@ -36,8 +39,14 @@ public class CBulletStage005 : CMovableBase
 
     protected override void AddInitState()
     {
-        m_AllState[(int)StaticGlobalDel.EMovableState.eMove].AllThisState.Add(new CMoveStateBullet_S05(this));
+       
+        if (m_ProjectileData.ProjectileType == CProjectileData.EProjectileType.eBullet)
+            m_AllState[(int)StaticGlobalDel.EMovableState.eMove].AllThisState.Add(new CMoveStateBullet_S05(this));
+        else if (m_ProjectileData.ProjectileType == CProjectileData.EProjectileType.eRubberBand)
+            m_AllState[(int)StaticGlobalDel.EMovableState.eMove].AllThisState.Add(new CMoveStateRendRubberBand(this));
+
         m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStateBase(this));
+        m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStateProjectile(this));
 
         // ================= Buff ===========================
 
