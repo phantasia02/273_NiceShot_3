@@ -56,7 +56,7 @@ public class CDragStraightLineStatePlayer : CPlayerStateBase
 
     public override void MouseDrag()
     {
-        Vector3 lTempV3 = m_MyPlayerMemoryShare.m_CurMouseDownPos - m_MyPlayerMemoryShare.m_DownMouseDownPos;
+        Vector3 lTempV3 = m_MyPlayerMemoryShare.m_CurMouseDownPos - m_MyPlayerMemoryShare.m_OldMouseDownPos;
 
         lTempV3 = (m_BuffCameraRight * (lTempV3.x / Screen.width) * m_MyPlayerMemoryShare.m_CurStageData.AddForce.x) +
                     (Vector3.up * (lTempV3.y / Screen.height) * m_MyPlayerMemoryShare.m_CurStageData.AddForce.y);
@@ -65,10 +65,10 @@ public class CDragStraightLineStatePlayer : CPlayerStateBase
         Vector3 lTempCurAngles = m_OriginalAng;
         lTempCurAngles.x -= lTempV3.y;
         lTempCurAngles.y -= lTempV3.x;
-        m_MyGameManager.CurVcamObjAnima.eulerAngles = lTempCurAngles;
+
 
         //Debug.Log($"m_MyGameManager.CurVcamObjAnima.eulerAngles = {m_MyGameManager.CurVcamObjAnima.eulerAngles}");
-        // m_MyGameManager.CurVcamObjAnima.rotation = m_DefCurVcamQ * Quaternion.AngleAxis(-lTempV3.y, Vector3.right) * Quaternion.AngleAxis(-lTempV3.x, Vector3.up);
+         m_MyGameManager.CurVcamObjAnima.rotation = m_MyGameManager.CurVcamObjAnima.rotation * Quaternion.AngleAxis(-lTempV3.y, Vector3.right) * Quaternion.AngleAxis(-lTempV3.x, Vector3.up);
 
         m_MyPlayerMemoryShare.m_MyTransform.rotation = Camera.main.transform.rotation;
         m_MyPlayerMemoryShare.m_MyTransform.position = Camera.main.transform.position + (Camera.main.transform.forward * 1.5f);
