@@ -9,8 +9,9 @@ public class CMoveStateBullet_S05 : CBulletS05StateBase
     Transform m_CamObj = null;
     protected bool m_LongHasHit = false;
     protected RaycastHit m_RaycastHitInfo;
+    float m_LongHasHitDis = 1.0f;
 
-    
+
 
     public CMoveStateBullet_S05(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -19,20 +20,18 @@ public class CMoveStateBullet_S05 : CBulletS05StateBase
 
     protected override void InState()
     {
-        //if (m_MyBulletMemoryShare.m_MyBullet.MyTargetNpc != null)
-        //{
-            //Debug.Log($"m_MyBulletMemoryShare.m_MyBullet.MyTargetNpc = {m_MyBulletMemoryShare.m_MyBullet.MyTargetNpc != null}");
 
-            m_CamObj = StaticGlobalDel.NewOtherObjAddParentShow(m_MyBulletMemoryShare.m_MyTransform, CGGameSceneData.EOtherObj.eBulletCam);
-            m_CamObj.transform.rotation = m_MyBulletMemoryShare.m_MyTransform.rotation;
+        m_CamObj = StaticGlobalDel.NewOtherObjAddParentShow(m_MyBulletMemoryShare.m_MyTransform, CGGameSceneData.EOtherObj.eBulletCam);
+        m_CamObj.transform.rotation = m_MyBulletMemoryShare.m_MyTransform.rotation;
 
-            //Time.timeScale = 0.5f;
+        //Time.timeScale = 0.5f;
 
-            Tween lTempTween = m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.transform.DORotate(new Vector3(0.0f, 0.0f, -360.0f), 0.01f, RotateMode.LocalAxisAdd);
-            lTempTween.SetLoops(-1);
-            lTempTween.SetEase(Ease.Linear);
-            lTempTween.SetId(m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.transform);
-        //}
+        Tween lTempTween = m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.transform.DORotate(new Vector3(0.0f, 0.0f, -360.0f), 0.01f, RotateMode.LocalAxisAdd);
+        lTempTween.SetLoops(-1);
+        lTempTween.SetEase(Ease.Linear);
+        lTempTween.SetId(m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.transform);
+
+        m_LongHasHitDis = m_MyBulletMemoryShare.m_TotleSpeed.Value / 5.0f;
     }
 
     protected override void updataState()
@@ -41,7 +40,7 @@ public class CMoveStateBullet_S05 : CBulletS05StateBase
 
         if (!m_LongHasHit)
         {
-            if (Physics.Raycast(new Ray(m_MyBulletMemoryShare.m_MyTransform.position, m_MyBulletMemoryShare.m_MyTransform.forward), out RaycastHit TempLongHitInfo, 1.5f))
+            if (Physics.Raycast(new Ray(m_MyBulletMemoryShare.m_MyTransform.position, m_MyBulletMemoryShare.m_MyTransform.forward), out RaycastHit TempLongHitInfo, m_LongHasHitDis))
             {
                 m_LongHasHit = true;
                 CNPCBase lTempNPCBase = TempLongHitInfo.collider.gameObject.GetComponentInParent<CNPCBase>();

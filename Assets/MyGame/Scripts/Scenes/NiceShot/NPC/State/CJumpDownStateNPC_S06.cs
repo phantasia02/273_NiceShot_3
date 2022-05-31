@@ -33,7 +33,7 @@ public class CJumpDownStateNPC_S06 : CNPCTargetStateBase006
         Vector3 lTempV3 = Vector3.MoveTowards(m_MyNPCMemoryShare.m_MyTransform.position, m_MyMovable.TargetPos.position, 2.0f * Time.deltaTime);
 
         m_MyNPCMemoryShare.m_MyTransform.rotation = Quaternion.Lerp(m_MyNPCMemoryShare.m_MyTransform.rotation, m_MyMovable.TargetPos.rotation, Time.deltaTime * 5.0f);
-        //m_MyNPCMemoryShare.m_MyTransform.up = Vector3.Lerp(m_MyNPCMemoryShare.m_MyTransform.up, Vector3.up, Time.deltaTime * 5.0f);
+        //m_MyNPCMemoryShare.m_MyTransform.up =  Vector3.Lerp(m_MyNPCMemoryShare.m_MyTransform.up, Vector3.up, Mathf.Min(Time.deltaTime * 5.0f, 1.0f));
 
         if (Vector3.Distance(lTempV3, m_MyMovable.TargetPos.position) <= Mathf.Epsilon)
             ChangState(EMovableState.eWait);
