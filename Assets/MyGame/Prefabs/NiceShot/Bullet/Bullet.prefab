@@ -5284,5 +5284,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MyAllCollider:
   - {fileID: 0}
+  m_MoveSpeed: 20
   m_ShowRenderer: {fileID: 160275591775783904}
   m_ProjectileData: {fileID: 11400000, guid: 0334a4312484517428eff7e8a72fb629, type: 2}

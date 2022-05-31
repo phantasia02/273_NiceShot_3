@@ -14,7 +14,14 @@ public class CBulletStage005 : CMovableBase
     public override EMovableType MyMovableType() { return EMovableType.eBullet; }
     protected CBulletStage005MemoryShare m_MyBulletMemoryShare = null;
 
-    public override float DefSpeed { get { return 10.0f; } }
+    // ==================== SerializeField ===========================================
+
+    [SerializeField] protected float m_MoveSpeed = 10.0f;
+
+    // ==================== SerializeField ===========================================
+
+
+    public override float DefSpeed { get { return m_MoveSpeed; } }
 
 
     [SerializeField] protected GameObject m_ShowRenderer = null;
