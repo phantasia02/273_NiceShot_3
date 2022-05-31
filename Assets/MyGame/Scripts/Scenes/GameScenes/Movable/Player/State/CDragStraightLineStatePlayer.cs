@@ -10,6 +10,7 @@ public class CDragStraightLineStatePlayer : CPlayerStateBase
     Vector3 m_BuffCameraRight = Vector3.zero;
     Vector3 m_StartPos = Vector3.zero;
     Quaternion m_DefCurVcamQ = Quaternion.identity;
+    Vector3 m_OriginalAng = Vector3.zero;
 
     public CDragStraightLineStatePlayer(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
@@ -34,6 +35,7 @@ public class CDragStraightLineStatePlayer : CPlayerStateBase
 
         m_MyGameManager.OpenPhysics = false;
         m_DefCurVcamQ = m_MyGameManager.CurVcamObjAnima.rotation;
+        m_OriginalAng = m_MyGameManager.CurVcamObjAnima.eulerAngles;
         //m_MyGameManager.CurVcamObjAnima.rotation.
         //Debug.Log($"m_MyGameManager.CurVcamObjAnima.rotation.x = {m_MyGameManager.CurVcamObjAnima.rotation.x}");
         //Debug.Log($"m_MyGameManager.CurVcamObjAnima.rotation.y = {m_MyGameManager.CurVcamObjAnima.rotation.y}");
@@ -60,7 +62,13 @@ public class CDragStraightLineStatePlayer : CPlayerStateBase
                     (Vector3.up * (lTempV3.y / Screen.height) * m_MyPlayerMemoryShare.m_CurStageData.AddForce.y);
 
 
-        m_MyGameManager.CurVcamObjAnima.rotation = m_DefCurVcamQ * Quaternion.AngleAxis(-lTempV3.y, Vector3.right) * Quaternion.AngleAxis(-lTempV3.x, Vector3.up);
+        Vector3 lTempCurAngles = m_OriginalAng;
+        lTempCurAngles.x -= lTempV3.y;
+        lTempCurAngles.y -= lTempV3.x;
+        m_MyGameManager.CurVcamObjAnima.eulerAngles = lTempCurAngles;
+
+        //Debug.Log($"m_MyGameManager.CurVcamObjAnima.eulerAngles = {m_MyGameManager.CurVcamObjAnima.eulerAngles}");
+        // m_MyGameManager.CurVcamObjAnima.rotation = m_DefCurVcamQ * Quaternion.AngleAxis(-lTempV3.y, Vector3.right) * Quaternion.AngleAxis(-lTempV3.x, Vector3.up);
 
         m_MyPlayerMemoryShare.m_MyTransform.rotation = Camera.main.transform.rotation;
         m_MyPlayerMemoryShare.m_MyTransform.position = Camera.main.transform.position + (Camera.main.transform.forward * 1.5f);
