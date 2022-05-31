@@ -10,7 +10,7 @@ public class CMoveStateBullet_S05 : CBulletS05StateBase
     protected bool m_LongHasHit = false;
     protected RaycastHit m_RaycastHitInfo;
     float m_LongHasHitDis = 1.0f;
-
+    protected float m_AddTouchDis = 0.0f;
 
 
     public CMoveStateBullet_S05(CMovableBase pamMovableBase) : base(pamMovableBase)
@@ -26,7 +26,7 @@ public class CMoveStateBullet_S05 : CBulletS05StateBase
 
         //Time.timeScale = 0.5f;
 
-        Tween lTempTween = m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.transform.DORotate(new Vector3(0.0f, 0.0f, -360.0f), 0.01f, RotateMode.LocalAxisAdd);
+        Tween lTempTween = m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.transform.DORotate(new Vector3(0.0f, 0.0f, -360.0f), m_MyBulletMemoryShare.m_ProjectileData.RotateTime, RotateMode.LocalAxisAdd);
         lTempTween.SetLoops(-1);
         lTempTween.SetEase(Ease.Linear);
         lTempTween.SetId(m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.transform);
@@ -53,14 +53,9 @@ public class CMoveStateBullet_S05 : CBulletS05StateBase
         }
         else
         {
-            if (Physics.Raycast(new Ray(m_MyBulletMemoryShare.m_MyTransform.position, m_MyBulletMemoryShare.m_MyTransform.forward), out RaycastHit TempHitInfo, 0.3f))
+            if (Physics.Raycast(new Ray(m_MyBulletMemoryShare.m_MyTransform.position, m_MyBulletMemoryShare.m_MyTransform.forward), out RaycastHit TempHitInfo, m_MyBulletMemoryShare.m_ProjectileData.TouchDis + m_AddTouchDis))
             {
-                ChangState(CMovableStatePototype.EMovableState.eWait);
-                CNPCBase lTempNPCBase = TempHitInfo.collider.gameObject.GetComponentInParent<CNPCBase>();
-                if (lTempNPCBase != null)
-                    lTempNPCBase.SetChangState(EMovableState.eDeath);
-                else
-                    m_MyGameManager.SetState(CGameManager.EState.eGameOver);
+                Touch(TempHitInfo);
             }
         }
 
@@ -72,10 +67,21 @@ public class CMoveStateBullet_S05 : CBulletS05StateBase
     protected override void OutState()
     {
         DOTween.Kill(m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.transform);
-        m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.SetActive(false);
-        Time.timeScale = 1.0f;
     }
 
+
+    protected virtual void Touch(RaycastHit HitInfo)
+    {
+        ChangState(CMovableStatePototype.EMovableState.eWait);
+        m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.SetActive(false);
+        Time.timeScale = 1.0f;
+
+        CNPCBase lTempNPCBase = HitInfo.collider.gameObject.GetComponentInParent<CNPCBase>();
+        if (lTempNPCBase != null)
+            lTempNPCBase.SetChangState(EMovableState.eDeath);
+        else
+            m_MyGameManager.SetState(CGameManager.EState.eGameOver);
+    }
 
     //public override void OnTriggerEnter(Collider other)
     //{

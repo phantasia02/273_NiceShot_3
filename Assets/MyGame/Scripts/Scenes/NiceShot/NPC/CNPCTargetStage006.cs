@@ -25,6 +25,7 @@ public class CNPCTargetStage006 : CNPCBase
     protected override void AddInitState()
     {
         m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStateNPC_S06(this));
+        m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStateBase(this));
         m_AllState[(int)StaticGlobalDel.EMovableState.eJump].AllThisState.Add(new CJumpStateNPC_S06(this));
         m_AllState[(int)StaticGlobalDel.EMovableState.eJumpDown].AllThisState.Add(new CJumpDownStateNPC_S06(this));
 

@@ -6,6 +6,7 @@ using MYgame.Scripts.Scenes.GameScenes.Data;
 public class CBulletStage005MemoryShare : CMemoryShareBase
 {
     public CBulletStage005 m_MyBullet = null;
+    public CProjectileData m_ProjectileData = null;
 };
 
 
@@ -46,11 +47,15 @@ public class CBulletStage005 : CMovableBase
 
     protected override void AddInitState()
     {
-       
+
         if (m_ProjectileData.ProjectileType == CProjectileData.EProjectileType.eBullet)
             m_AllState[(int)StaticGlobalDel.EMovableState.eMove].AllThisState.Add(new CMoveStateBullet_S05(this));
         else if (m_ProjectileData.ProjectileType == CProjectileData.EProjectileType.eRubberBand)
             m_AllState[(int)StaticGlobalDel.EMovableState.eMove].AllThisState.Add(new CMoveStateRendRubberBand(this));
+        else if (m_ProjectileData.ProjectileType == CProjectileData.EProjectileType.eBulletDart)
+        {
+            m_AllState[(int)StaticGlobalDel.EMovableState.eMove].AllThisState.Add(new CMove2StateBullet(this));
+        }
 
         m_AllState[(int)StaticGlobalDel.EMovableState.eWait].AllThisState.Add(new CWaitStateBase(this));
         m_AllState[(int)StaticGlobalDel.EMovableState.eDeath].AllThisState.Add(new CDeathStateProjectile(this));
@@ -70,6 +75,8 @@ public class CBulletStage005 : CMovableBase
             m_MyBulletMemoryShare.m_MyMovable = m_MyBulletMemoryShare.m_MyBullet = this;
 
         base.CreateMemoryShare();
+
+        m_MyBulletMemoryShare.m_ProjectileData = m_ProjectileData;
     }
 
     protected override void Start()

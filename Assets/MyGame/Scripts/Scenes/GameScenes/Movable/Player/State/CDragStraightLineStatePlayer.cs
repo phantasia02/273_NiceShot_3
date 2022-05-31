@@ -80,6 +80,7 @@ public class CDragStraightLineStatePlayer : CPlayerStateBase
 
     public override void MouseUp()
     {
+        m_MyGameManager.SetAllActorTypeState(CActor.EActorType.eTarget, EMovableState.eWait, 1);
         m_MyPlayerMemoryShare.m_AllObj.gameObject.SetActive(false);
 
         GameObject lTempGameObject = m_MyGameManager.GetTimeObj(0);
@@ -107,7 +108,7 @@ public class CDragStraightLineStatePlayer : CPlayerStateBase
         if (SceneManager.GetActiveScene().buildIndex == 5 )
             lTempBullet = StaticGlobalDel.NewFxAddParentShow(m_MyGameManager.gameObject.transform, CGGameSceneData.EAllFXType.eBullet);
         else if (SceneManager.GetActiveScene().buildIndex == 6)
-            lTempBullet = StaticGlobalDel.NewFxAddParentShow(m_MyGameManager.gameObject.transform, CGGameSceneData.EAllFXType.eRubberBand);
+            lTempBullet = StaticGlobalDel.NewFxAddParentShow(m_MyGameManager.gameObject.transform, CGGameSceneData.EAllFXType.eBulletDart);
 
         lTempBullet.position = m_MyPlayerMemoryShare.m_MyTransform.position;
         lTempBullet.forward = m_MyPlayerMemoryShare.m_MyTransform.forward;

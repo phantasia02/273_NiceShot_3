@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 4256834416923035120}
   - component: {fileID: 917762134485879381}
   - component: {fileID: 3123383254741499551}
+  - component: {fileID: 2958068479946142836}
   m_Layer: 0
   m_Name: Model_Dart
   m_TagString: Untagged
@@ -118,3 +119,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &2958068479946142836
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3483676104259706698}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.031021375
+  m_Height: 0.04101165
+  m_Direction: 1
+  m_Center: {x: 0.0000000018626471, y: 0.010505821, z: 0.000000057742}

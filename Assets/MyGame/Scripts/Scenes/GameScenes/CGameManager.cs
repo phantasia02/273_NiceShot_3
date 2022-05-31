@@ -397,16 +397,7 @@ public class CGameManager : MonoBehaviour
 
     void OnApplicationQuit() { isApplicationQuitting = true; }
 
-    //public void SetWinUI()
-    //{
-    //    SetState(EState.eWinUI);
 
-    //}
-
-    //public void SetLoseUI()
-    //{
-    //    SetState(EState.eGameOver);
-    //}
 
 
     // ==================== All ObjData  ===========================================
@@ -486,6 +477,18 @@ public class CGameManager : MonoBehaviour
         int lTempTypeIndex = (int)removeActorBase.MyActorType();
         List<CActor> lTempActorBaseList = m_AllActorBase[lTempTypeIndex].m_ActorBaseListData;
         lTempActorBaseList.Remove(removeActorBase);
+    }
+
+
+    public void SetAllActorTypeState(CActor.EActorType type, CMovableStatePototype.EMovableState state, int Stateindex = -1)
+    {
+        int index = (int)type;
+
+        if (m_AllActorBase.Length <= index)
+            return;
+
+        foreach (var item in m_AllActorBase[index].m_ActorBaseListData)
+            item.SetChangState(state, Stateindex);
     }
 
     // ==================== All ObjData  ===========================================

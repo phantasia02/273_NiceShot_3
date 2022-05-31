@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _WinMoveWinPos: 0
   _Gravity: {x: 0, y: -9.81, z: 0}
-  _AddForce: {x: 80, y: 120, z: 0}
+  _AddForce: {x: 100, y: 120, z: 0}
   _PredictionTime: 1.5
   _PredictionBallSize: 0.1
   _JumpStatePlayerType: 1

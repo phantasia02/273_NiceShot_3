@@ -49,7 +49,7 @@ public class CGGameSceneData : CSingletonMonoBehaviour<CGGameSceneData>
         eScared     = 0,
         eHappy      = 1,
         eBullet     = 2,
-        eRubberBand = 3,
+        eBulletDart = 3,
         eMax,
     };
 
