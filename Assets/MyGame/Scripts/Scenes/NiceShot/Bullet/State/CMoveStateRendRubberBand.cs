@@ -37,7 +37,7 @@ public class CMoveStateRendRubberBand : CBulletS05StateBase
         //}
     }
 
-    protected override void updataState()
+    protected override void FixedupdataState()
     {
         m_MyBulletMemoryShare.m_MyTransform.Translate(m_MyBulletMemoryShare.m_MyTransform.forward * Time.deltaTime * m_MyBulletMemoryShare.m_TotleSpeed.Value, Space.World);
 

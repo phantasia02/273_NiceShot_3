@@ -34,9 +34,9 @@ public class CMoveStateBullet_S05 : CBulletS05StateBase
         m_LongHasHitDis = m_MyBulletMemoryShare.m_TotleSpeed.Value / 5.0f;
     }
 
-    protected override void updataState()
+    protected override void FixedupdataState()
     {
-        m_MyBulletMemoryShare.m_MyTransform.Translate(m_MyBulletMemoryShare.m_MyTransform.forward * Time.deltaTime * m_MyBulletMemoryShare.m_TotleSpeed.Value, Space.World);
+        m_MyBulletMemoryShare.m_MyTransform.Translate(m_MyBulletMemoryShare.m_MyTransform.forward * Time.fixedDeltaTime * m_MyBulletMemoryShare.m_TotleSpeed.Value, Space.World);
 
         if (!m_LongHasHit)
         {
@@ -47,6 +47,8 @@ public class CMoveStateBullet_S05 : CBulletS05StateBase
                 if (lTempNPCBase != null)
                 {
                     Time.timeScale = 0.1f;
+                    Time.fixedDeltaTime = StaticGlobalDel.fixedDeltaTime * Time.timeScale;
+
                     m_CamObj.transform.SetParent(m_MyGameManager.transform);
                 }
             }
@@ -75,6 +77,7 @@ public class CMoveStateBullet_S05 : CBulletS05StateBase
         ChangState(CMovableStatePototype.EMovableState.eWait);
         m_MyBulletMemoryShare.m_MyBullet.ShowRenderer.SetActive(false);
         Time.timeScale = 1.0f;
+        Time.fixedDeltaTime = StaticGlobalDel.fixedDeltaTime * Time.timeScale;
 
         CNPCBase lTempNPCBase = HitInfo.collider.gameObject.GetComponentInParent<CNPCBase>();
         if (lTempNPCBase != null)

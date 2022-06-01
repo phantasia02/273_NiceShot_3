@@ -97,6 +97,13 @@ public static class StaticGlobalDel
     // ============= Speed ====================
     public const float g_DefMovableTotleSpeed = 15.0f;
 
+    static float g_fixedDeltaTime = 0.02f;
+    public static float fixedDeltaTime
+    {
+        get => g_fixedDeltaTime;
+        set => g_fixedDeltaTime = value;
+    }
+
     static int g_DoTweenID = 1;
     public static int GetDoTweenID() { return g_DoTweenID++; }
 

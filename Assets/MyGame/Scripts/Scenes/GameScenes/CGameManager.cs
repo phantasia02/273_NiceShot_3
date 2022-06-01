@@ -179,15 +179,14 @@ public class CGameManager : MonoBehaviour
         //}
 
         m_Player = this.GetComponentInChildren<CPlayer>();
-
         m_MyResultUI = GameObject.FindObjectOfType<ResultUI>();
-
-        //m_MyResultUI = gameObject.GetComponentInChildren<ResultUI>(true);
         if (m_MyResultUI != null)
         {
             m_MyResultUI.Over.onClick.AddListener(OnReset);
             m_MyResultUI.Next.onClick.AddListener(OnNext);
         }
+
+        StaticGlobalDel.fixedDeltaTime = Time.fixedDeltaTime;
     }
 
     // Start is called before the first frame update
