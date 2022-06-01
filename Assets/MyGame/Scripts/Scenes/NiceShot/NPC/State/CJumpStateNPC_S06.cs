@@ -6,22 +6,22 @@ public class CJumpStateNPC_S06 : CNPCTargetStateBase006
 {
     public override EMovableState StateType() { return EMovableState.eJump; }
 
-    protected CNPCTargetStage006 m_MyMovable = null;
+    protected CNPCTargetStage006 m_MyCNPCTarget = null;
     protected Transform m_NextPosTransform = null;
 
     public CJumpStateNPC_S06(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
         m_MyMovable = (CNPCTargetStage006)m_MyNPCMemoryShare.m_MyMovable;
-        m_NextPosTransform = m_MyMovable.NextPos;
+        m_NextPosTransform = m_MyCNPCTarget.NextPos;
     }
 
     protected override void InState()
     {
-        Transform lTempTargetTransform = m_MyMovable.AllRefPos[Random.Range(0, m_MyMovable.AllRefPos.Count)];
+        Transform lTempTargetTransform = m_MyCNPCTarget.AllRefPos[Random.Range(0, m_MyCNPCTarget.AllRefPos.Count)];
         lTempTargetTransform.Rotate(Vector3.up * Random.Range(0.0f, 360.0f));
-        
 
-        m_MyMovable.TargetPos = lTempTargetTransform;
+
+        m_MyCNPCTarget.TargetPos = lTempTargetTransform;
 
         Vector3 lTempRandomPos = Random.insideUnitCircle;
         lTempRandomPos.y += 2.0f;
