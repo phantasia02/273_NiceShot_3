@@ -68,6 +68,7 @@ public static class StaticGlobalDel
     public const string TagSaveManager      = "SaveManager";
     public const string TagAudioManager     = "AudioManager";
     public const string TagReadyGameWindow  = "ReadyGameWindow";
+    public const string TagResultWindow     = "ResultWindow";
     public const string TagWin              = "WinTag";
     public const string TagPlayTouchObject  = "PlayTouchObject";
     public const string TagJumpBounce       = "Bounce";
@@ -146,6 +147,7 @@ public static class StaticGlobalDel
             TagSaveManager,
             TagAudioManager,
             TagReadyGameWindow,
+            TagResultWindow
         };
 
         CGGameSceneData lTempCGGameSceneData = null;
@@ -174,6 +176,9 @@ public static class StaticGlobalDel
                         break;
                     case TagReadyGameWindow:
                         lTempObj = GameObject.Instantiate(lTempCGGameSceneData.m_UIObj[(int)CGGameSceneData.EUIPrefab.eReadyGameWindow]);
+                        break;
+                    case TagResultWindow:
+                        lTempObj = GameObject.Instantiate(lTempCGGameSceneData.m_UIObj[(int)CGGameSceneData.EUIPrefab.eResultWindow]);
                         break;
                 }
 

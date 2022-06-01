@@ -13,6 +13,7 @@ TagManager:
   - WinTag
   - Bounce
   - Insert
+  - ResultWindow
   layers:
   - Default
   - TransparentFX

@@ -11,7 +11,7 @@ public class CJumpStateNPC_S06 : CNPCTargetStateBase006
 
     public CJumpStateNPC_S06(CMovableBase pamMovableBase) : base(pamMovableBase)
     {
-        m_MyMovable = (CNPCTargetStage006)m_MyNPCMemoryShare.m_MyMovable;
+        m_MyCNPCTarget = (CNPCTargetStage006)m_MyNPCMemoryShare.m_MyMovable;
         m_NextPosTransform = m_MyCNPCTarget.NextPos;
     }
 

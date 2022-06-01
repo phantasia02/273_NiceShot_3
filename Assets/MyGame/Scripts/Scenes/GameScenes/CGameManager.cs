@@ -135,16 +135,6 @@ public class CGameManager : MonoBehaviour
         m_StartPosition = GameObject.Find("StartPosition").transform;
 
 
-
-        m_MyResultUI = gameObject.GetComponentInChildren<ResultUI>(true);
-
-        if (m_MyResultUI != null)
-        {
-            m_MyResultUI.Over.onClick.AddListener(OnReset);
-            m_MyResultUI.Next.onClick.AddListener(OnNext);
-
-        }
-
         GameObject lTempCameraObj = GameObject.FindGameObjectWithTag("MainCamera");
         if (lTempCameraObj != null)
             m_Camera = lTempCameraObj.GetComponent<Camera>();
@@ -190,7 +180,14 @@ public class CGameManager : MonoBehaviour
 
         m_Player = this.GetComponentInChildren<CPlayer>();
 
-        
+        m_MyResultUI = GameObject.FindObjectOfType<ResultUI>();
+
+        //m_MyResultUI = gameObject.GetComponentInChildren<ResultUI>(true);
+        if (m_MyResultUI != null)
+        {
+            m_MyResultUI.Over.onClick.AddListener(OnReset);
+            m_MyResultUI.Next.onClick.AddListener(OnNext);
+        }
     }
 
     // Start is called before the first frame update
@@ -385,14 +382,20 @@ public class CGameManager : MonoBehaviour
 
     public void OnNext()
     {
-        DOTween.KillAll();
         m_ChangeScenes.LoadGameScenes();
     }
 
     public void OnReset()
     {
-        DOTween.KillAll();
         m_ChangeScenes.ResetScene();
+    }
+
+    public void OnDestroy()
+    {
+        DOTween.KillAll();
+
+        if (m_MyResultUI != null)
+            m_MyResultUI.DeactivateUI();
     }
 
     void OnApplicationQuit() { isApplicationQuitting = true; }
